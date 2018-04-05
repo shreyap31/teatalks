@@ -1,63 +1,61 @@
 <div class="row row-no-padding addyoutea-container">
-    <div class="col-12 col-no-padding">
-        <h2>Make your own tea</h2>
-        <form>
-         <mat-form-field class="demo-full-width">    
-                <input matInput placeholder="Enter Tea Name" [formControl]="firstName" required>    
-                 <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>   
-    <div class="col-12 col-no-padding">
-             <mat-form-field>    
-                            <mat-select placeholder="Select Tea Brand" [(value)]="selected">    
-                                <mat-option>-- Select Any --</mat-option>    
-                                <mat-option value="1">lipton</mat-option>    
-                                <mat-option value="2">tata</mat-option>    
-                                <mat-option value="3">society</mat-option>
-                                <mat-option value="3">tetley</mat-option>        
-                            </mat-select>    
-                </mat-form-field>   
-
-
- </div>
-
   <div class="col-12 col-no-padding">
-     <p>Do you want milk/water?</p>
-    <mat-checkbox class="milk-water" [checked]="true">milk</mat-checkbox>
-     <mat-checkbox class="milk-water">water</mat-checkbox>
- </div>
+    <h2>Make your own tea</h2>
+    <form>
+      <mat-form-field class="demo-full-width">
+        <input matInput placeholder="Enter Tea Name" [formControl]="firstName" required>
+        <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
 
-  <div class="col-12 col-no-padding">
-     <p>Do you want sugar?</p>
-     <mat-radio-group> 
-    <mat-radio-button value="1" [checked]="true">Yes</mat-radio-button>    
-    <mat-radio-button value="2">No</mat-radio-button> 
-    </mat-radio-group> 
- </div>
+      <div class="col-12 col-no-padding">
+        <mat-form-field>
+          <mat-select placeholder="Select Tea Brand" [(value)]="selected">
+            <mat-option>-- Select Any --</mat-option>
+            <mat-option value="1">lipton</mat-option>
+            <mat-option value="2">tata</mat-option>
+            <mat-option value="3">society</mat-option>
+            <mat-option value="3">tetley</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
- <div class="col-12 col-no-padding">
-            <p>how stressed are you?</p>
-                        <mat-radio-group>    
-                             <mat-radio-button value="1" [checked]="true">small</mat-radio-button>    
-                             <mat-radio-button value="2">medium</mat-radio-button> 
-                             <mat-radio-button value="3">large</mat-radio-button>    
-                        </mat-radio-group>    
+      <div class="col-12 col-no-padding">
+        <p>Do you want milk/water?</p>
+        <mat-checkbox class="milk-water" [checked]="true">milk</mat-checkbox>
+        <mat-checkbox class="milk-water">water</mat-checkbox>
+      </div>
 
-                
- </div>
+      <div class="col-12 col-no-padding">
+        <p>Do you want sugar?</p>
+        <mat-radio-group>
+          <mat-radio-button value="1" [checked]="true">Yes</mat-radio-button>
+          <mat-radio-button value="2">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-12 col-no-padding">
+        <p>how stressed are you?</p>
+        <mat-radio-group>
+          <mat-radio-button value="1" [checked]="true">small</mat-radio-button>
+          <mat-radio-button value="2">medium</mat-radio-button>
+          <mat-radio-button value="3">large</mat-radio-button>
+        </mat-radio-group>
+      </div>
 
 
- <div class="col-12 col-no-padding ingredients-container">
-     <p>ingredients</p>
-    <mat-checkbox class="ingredients" [checked]="true" >ginger</mat-checkbox>
-     <mat-checkbox class="ingredients">Lemon</mat-checkbox>
-     <mat-checkbox class="ingredients" >Tulsi</mat-checkbox>
-     <mat-checkbox class="ingredients">Cardamom</mat-checkbox>
- </div> 
-<div class="col-12 col-no-padding button-container">
-  <button mat-raised-button color="" class="save-btn">Save your tea</button>    
-    <button mat-raised-button color="" class="clear-btn">Clear</button>
-    </div>
+      <div class="col-12 col-no-padding ingredients-container">
+        <p>ingredients</p>
+        <mat-checkbox class="ingredients" [checked]="true">ginger</mat-checkbox>
+        <mat-checkbox class="ingredients">Lemon</mat-checkbox>
+        <mat-checkbox class="ingredients">Tulsi</mat-checkbox>
+        <mat-checkbox class="ingredients">Cardamom</mat-checkbox>
+      </div>
+
+      <div class="col-12 col-no-padding button-container">
+        <button mat-raised-button color="" class="save-btn">Save your tea</button>
+        <button mat-raised-button color="" class="clear-btn">Clear</button>
+      </div>
+
     </form>
-    </div>
+  </div>
 </div>
-

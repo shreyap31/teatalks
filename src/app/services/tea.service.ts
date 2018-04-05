@@ -12,4 +12,8 @@ export class TeaService {
     return this.apiService.request<Tea[]>(`/teaTalks/getTeaList/${userId}`);
   }
 
+  getTea(teaId: string): Observable<Tea> {
+    return this.apiService.request<Tea>(`/teaTalks/getTea/${teaId}`);
+  }
+
 }

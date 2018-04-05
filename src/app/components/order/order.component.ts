@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TeaService } from '../../services/tea.service';
+import { Tea } from '../../models/tea';
 
 @Component({
   selector: 'app-order',
@@ -7,9 +11,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  // model
+  tea: Tea;
+
+  // view models
+  milkChecked: boolean;
+  waterChecked: boolean;
+  sugarChecked: boolean;
+  teaCupSize: string;
+  ingredients: string;
+  cupSelections = Array(25);
+
+  constructor(
+    private teaService: TeaService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
+    const teaId = this.route.snapshot.paramMap.get('id');
+    this.teaService.getTea(teaId)
+      .subscribe(tea => {
+        this.tea = tea;
+
+        this.milkChecked = tea.milk === 'true';
+        this.waterChecked = tea.water === 'true';
+        if (!this.milkChecked && !this.waterChecked) {
+          this.milkChecked = true;
+        }
+
+        this.sugarChecked = tea.sugar === 'false' ? false : true;
+
+        if (['small', 'medium', 'large'].includes(tea.teaCupSize)) {
+          this.teaCupSize = tea.teaCupSize;
+        } else {
+          this.teaCupSize = 'medium';
+        }
+
+        if (tea.ingredients && tea.ingredients.length) {
+          this.ingredients = tea.ingredients.join(', ');
+        }
+      });
   }
 
 }

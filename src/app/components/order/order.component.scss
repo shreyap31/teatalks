@@ -1,0 +1,31 @@
+.order-tea-container {
+  background-color: white;
+  color: #3b160f;
+  opacity: 0.75;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px 0 50px;
+}
+.button-container {
+  margin-top: 20px;
+}
+.save-btn {
+  background-color: green;
+  color: white;
+  border-radius: 17.5px;
+}
+.detail-line {
+  margin: 20px 0;
+
+  p {
+    margin-bottom: 8px;
+  }
+}
+.tea-brand {
+  font-style: italic;
+}
+.label {
+  font-size: 18px;
+  font-weight: bold;
+}
