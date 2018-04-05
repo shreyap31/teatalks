@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SignInComponent } from '../sign-in/sign-in.component';
+import { TeaService } from '../../services/tea.service';
+import { Tea } from '../../models/tea';
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +11,12 @@ import { SignInComponent } from '../sign-in/sign-in.component';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  teaList: Tea[];
+
+  constructor(
+    public dialog: MatDialog,
+    private teaService: TeaService
+  ) {}
 
   openDialog(): void {
     this.dialog.open(SignInComponent, {
@@ -19,6 +26,8 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.teaService.getTeaList()
+        .subscribe(teaList => this.teaList = teaList);
   }
 
 }

@@ -36,6 +36,9 @@
           <li><a routerLink="/order/21">Lemon Tea</a></li>
           <li><a routerLink="/order/31">Green Tea</a></li>
           <li><a routerLink="/order/41">Masala Tea</a></li>
+          <li *ngFor="let tea of teaList">
+            <a routerLink="/order/{{tea.id}}">{{ tea.name }}</a>
+          </li>
         </ul>
       </nav>
     </div>
