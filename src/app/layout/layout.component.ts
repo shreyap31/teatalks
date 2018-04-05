@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { SignInComponent } from '../sign-in/sign-in.component';
 
 @Component({
   selector: 'app-layout',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(SignInComponent, {
+      width: '370px',
+	    height: '500px',      
+    });   
+  };
 
   ngOnInit() {
   }

@@ -13,10 +13,14 @@ import {
   MatRadioModule,      
   MatSelectModule,      
   MatOptionModule,   
-  MatCheckboxModule,   
+  MatCheckboxModule,
+  MatTabsModule,
+  MatCardModule,
+  MatDialogModule,   
+  MatGridListModule,
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher      
-} from '@angular/material';      
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';      
 import { AppComponent } from './app.component';      
       
@@ -35,7 +39,11 @@ import { AppComponent } from './app.component';
     MatRadioModule,      
     MatSelectModule,      
     MatOptionModule,      
-    MatCheckboxModule,  
+    MatCheckboxModule,
+    MatCardModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatTabsModule
   ],      
   exports: [      
     MatButtonModule,      
@@ -48,7 +56,11 @@ import { AppComponent } from './app.component';
     MatRadioModule,      
     MatSelectModule,      
     MatOptionModule,      
-    MatCheckboxModule,    
+    MatCheckboxModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatCardModule
   ],      
   providers: [      
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}      
