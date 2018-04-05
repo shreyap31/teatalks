@@ -1,0 +1,27 @@
+.addyoutea-container p{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: inherit;
+    color: rgba(0,0,0,.54);
+}
+
+.addyoutea-container .mat-checkbox-label {
+     font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: inherit;
+}
+
+
+.addyoutea-container .mat-form-field .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+.button-container {
+    margin-top: 20px;
+}
+.save-btn {
+           background-color: green;
+            color: white;
+            border-radius: 17.5px;
+}
+.clear-btn {
+    border-radius: 17.5px;
+    color:green;
+}

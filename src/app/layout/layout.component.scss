@@ -112,7 +112,7 @@ article {
     background-image:url('../../assets/image-4.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top:80px;
+    margin-top:85px;
         height: 100vh;
 }
 
@@ -125,8 +125,10 @@ article {
     top: 0px;
     transition: all 0.4s ease-in-out 0s;
     z-index: 8;
-    padding: 2.5px 0 4.5px;
-    height:80px;
+    padding-left: 10px;
+    height: 85px;
+    display: flex;
+    align-items: center;
     text-align:left;
 }
 .full_width_div {
