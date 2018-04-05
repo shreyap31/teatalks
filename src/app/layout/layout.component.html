@@ -1,5 +1,57 @@
-<p>
-  layout works!
-</p>
 
-<router-outlet></router-outlet>
+
+<div class="container teatalk-container">
+  <div id="header_bar" class="full_width_div full_width_div_fixed row row-no-padding">
+      <div class="col-3 col-no-padding">
+        <div id="website_logo">
+          <img src="../../assets/logo.png" alt="logo" width="80" height="80">
+        </div>
+      </div>
+      <div class="website_name col-6 col-no-padding">
+          <h1>Tea Talks</h1>
+      </div>
+      <!--<img src="../assets/logo.png" alt="logo" class="logo_top_left">-->
+      <div class="col-3 col-no-padding">
+      <div class="header_right header_right11">
+        <div class="top_right top_right1">
+          <ul>
+            <li class="desk_sign_up open_login_sign_up_sec mylogin">
+            <div class="text-uppercase login-flex">
+              <svg style="height: 30px;width: 27px;vertical-align: middle;fill:white">
+                <g viewBox="0 0 20 20">
+                  <path class="white" d="M9.92,8.87a4.44,4.44,0,1,1,4.43-4.44A4.44,4.44,0,0,1,9.92,8.87Zm0-7a2.53,2.53,0,1,0,2.53,2.53A2.53,2.53,0,0,0,9.92,1.91Z"/><path class="white" d="M19.84,20H0V19C0,13.89,4.45,9.7,9.92,9.7s9.92,4.19,9.92,9.34ZM2,18.09H17.87a7.84,7.84,0,0,0-7.95-6.48A7.84,7.84,0,0,0,2,18.09Z"/>
+                </g>
+              </svg>    
+              <span class="">Login</span>
+            </div>
+          </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+  </div>
+
+  <div class="middle_row row row-no-padding">
+    <div class="col-3 col-no-padding">
+      <nav>
+        <ul>
+          <li><a href="#">London</a></li>
+          <li><a href="#">Paris</a></li>
+          <li><a href="#">Tokyo</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="col-9 col-no-padding" >
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+<div class="row row-no-padding">
+<footer>Copyright &copy; </footer>
+</div>
+</div>
+
+
+
+
