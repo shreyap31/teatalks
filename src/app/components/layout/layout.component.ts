@@ -12,11 +12,11 @@ export class LayoutComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(SignInComponent, {
+    this.dialog.open(SignInComponent, {
       width: '370px',
-	    height: '500px',      
-    });   
-  };
+      height: '500px',
+    });
+  }
 
   ngOnInit() {
   }

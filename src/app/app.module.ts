@@ -7,11 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { LayoutComponent } from './layout/layout.component';
-import { OrderComponent } from './order/order.component';
-import { CreateComponent } from './create/create.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-
+import { LayoutComponent } from './components/layout/layout.component';
+import { OrderComponent } from './components/order/order.component';
+import { CreateComponent } from './components/create/create.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -24,7 +23,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,  
+    AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,

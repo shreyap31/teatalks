@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { OrderComponent } from './order/order.component';
-import { CreateComponent } from './create/create.component';
+import { OrderComponent } from './components/order/order.component';
+import { CreateComponent } from './components/create/create.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: OrderComponent },

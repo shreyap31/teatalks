@@ -8,16 +8,15 @@ import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class CreateComponent implements OnInit {
 
+  firstName = new FormControl('', [Validators.required]);
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  firstName = new FormControl('', [Validators.required]);
-
   getErrorMessage() {
-    return this.firstName.hasError('required') ? 'Please enter a tea name' :'';
-        
+    return this.firstName.hasError('required') ? 'Please enter a tea name' : '';
   }
 
 }
