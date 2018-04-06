@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { TeaService } from '../../services/tea.service';
+import { TeaBrand } from '../../constants/tea-brand';
+import { TeaCupSize } from '../../constants/tea-cup-size';
+import { TeaIngredient } from '../../constants/tea-ingredient';
 
 @Component({
   selector: 'app-create',
@@ -11,45 +14,64 @@ export class CreateComponent implements OnInit {
 
   teaName = new FormControl('', [Validators.required]);
   milkChecked = true;
-  waterChecked: boolean;
+  waterChecked = false;
+  sugarChecked = true;
   brand: string;
-  cupSize= 0;
-  sugarChecked = 'true';
+  cupSize = 2;
+  ingredientOptions;
+  TeaBrand = TeaBrand;
+  TeaCupSize = TeaCupSize;
 
-  constructor(private teaService:TeaService) { 
-
+  constructor(private teaService: TeaService) {
+    this.ingredientOptions = Object.keys(TeaIngredient).reduce((acc, key) => {
+      acc.push({
+        name: TeaIngredient[key],
+        checked: false
+      });
+      return acc;
+    }, []);
   }
 
   ngOnInit() {
   }
 
-  getErrorMessage() {
-    return this.teaName.hasError('required') ? 'Please enter a tea name' : '';
-  }
-
   onSubmitTeaForm() {
+    const ingredients = [];
 
-    console.log('cicked');
+    this.ingredientOptions.forEach(ingredient => {
+      if (ingredient.checked) {
+        ingredients.push(ingredient.name);
+      }
+    });
+
     const tea = {
-      brand: this.brand,
-      createdBy: "Default",
-      cupSize: this.cupSize,
-      id: "",
-      ingredients: [
-        "lemon"
-      ],
-      milk: this.milkChecked,
+      id: '',
       name: this.teaName.value,
-      sugar: this.sugarChecked === 'true',
-      water: this.waterChecked
+      brand: this.brand,
+      milk: this.milkChecked,
+      sugar: this.sugarChecked,
+      water: this.waterChecked,
+      cupSize: this.cupSize,
+      ingredients,
+      createdBy: 'Default'
+    };
 
-    }
-    console.log('after create object ' + JSON.stringify(tea));
-    this.teaService.addTea(tea);
+    this.teaService.addTea(tea).subscribe();
   }
 
-  get createteaForm() {
-    if (!this.teaName.value || (!this.milkChecked && !this.waterChecked)) {
+  get teaNameErrorMessage() {
+    return this.teaName.hasError('required') ? 'please enter a tea name' : null;
+  }
+
+  get milkWaterErrorMessage() {
+    if (!this.milkChecked && !this.waterChecked) {
+      return 'please select at least one option';
+    }
+    return null;
+  }
+
+  get canCreateTea() {
+    if (!this.teaName.value || !this.brand || (!this.milkChecked && !this.waterChecked)) {
       return false;
     }
     return true;

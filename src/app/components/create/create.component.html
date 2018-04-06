@@ -1,21 +1,22 @@
 <div class="row row-no-padding addyoutea-container">
   <div class="col-12 col-no-padding">
     <h2>Make your own tea</h2>
-    <div class="makeyourtea-form" name="makeyourtea">
-       <div class="col-12 col-no-padding">
-      <mat-form-field class="demo-full-width">
-        <input matInput placeholder="Enter Tea Name" [formControl]="teaName" required>
-        <mat-error *ngIf="teaName.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+
+    <div class="makeyourtea-form">
+      <div class="col-12 col-no-padding">
+        <mat-form-field class="demo-full-width">
+          <input matInput placeholder="Enter Tea Name" [formControl]="teaName" required>
+          <mat-error>{{ teaNameErrorMessage }}</mat-error>
+        </mat-form-field>
       </div>
 
       <div class="col-12 col-no-padding">
         <mat-form-field class="demo-full-width">
           <mat-select placeholder="Select Tea Brand" [(ngModel)]="brand">
-            <mat-option value="1">lipton</mat-option>
-            <mat-option value="2">tata</mat-option>
-            <mat-option value="3">society</mat-option>
-            <mat-option value="3">tetley</mat-option>
+            <mat-option [value]="TeaBrand.LIPTON">{{ TeaBrand.LIPTON }}</mat-option>
+            <mat-option [value]="TeaBrand.TETLEY">{{ TeaBrand.TETLEY }}</mat-option>
+            <mat-option [value]="TeaBrand.TATA">{{ TeaBrand.TATA }}</mat-option>
+            <mat-option [value]="TeaBrand.SOCIETY">{{ TeaBrand.SOCIETY }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -24,37 +25,36 @@
         <p>Do you want milk/water?</p>
         <mat-checkbox class="milk-water" [(ngModel)]="milkChecked">milk</mat-checkbox>
         <mat-checkbox class="milk-water" [(ngModel)]="waterChecked">water</mat-checkbox>
-        <mat-error *ngIf="!milkChecked && !waterChecked">Please select atleast one of options</mat-error>
+        <mat-error>{{ milkWaterErrorMessage }}</mat-error>
       </div>
 
       <div class="col-12 col-no-padding">
         <p>Do you want sugar?</p>
         <mat-radio-group [(ngModel)]="sugarChecked">
-          <mat-radio-button value="true" >Yes</mat-radio-button>
-          <mat-radio-button value="false">No</mat-radio-button>
+          <mat-radio-button [value]="true">yes</mat-radio-button>
+          <mat-radio-button [value]="false">no</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <div class="col-12 col-no-padding">
-        <p>how stressed are you?</p>
+        <p>How stressed are you?</p>
         <mat-radio-group [(ngModel)]="cupSize">
-          <mat-radio-button value="0" >small</mat-radio-button>
-          <mat-radio-button value="1">medium</mat-radio-button>
-          <mat-radio-button value="2">large</mat-radio-button>
+          <mat-radio-button [value]="TeaCupSize.SMALL">small</mat-radio-button>
+          <mat-radio-button [value]="TeaCupSize.MEDIUM">medium</mat-radio-button>
+          <mat-radio-button [value]="TeaCupSize.LARGE">large</mat-radio-button>
         </mat-radio-group>
       </div>
 
 
       <div class="col-12 col-no-padding ingredients-container">
-        <p>ingredients</p>
-        <mat-checkbox class="ingredients">ginger</mat-checkbox>
-        <mat-checkbox class="ingredients">Lemon</mat-checkbox>
-        <mat-checkbox class="ingredients">Tulsi</mat-checkbox>
-        <mat-checkbox class="ingredients">Cardamom</mat-checkbox>
+        <p>Ingredients</p>
+        <mat-checkbox *ngFor="let ingredient of ingredientOptions" class="ingredients" [(ngModel)]="ingredient.checked">
+          {{ ingredient.name }}
+        </mat-checkbox>
       </div>
 
       <div class="col-12 col-no-padding button-container">
-        <button mat-raised-button color="" class="save-btn" [disabled]="!createteaForm" (click)="onSubmitTeaForm()">Save your tea</button>
+        <button mat-raised-button color="" class="save-btn" [disabled]="!canCreateTea" (click)="onSubmitTeaForm()">Save your tea</button>
         <button mat-raised-button color="" class="clear-btn">Clear</button>
       </div>
 
