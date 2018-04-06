@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { TeaService } from '../../services/tea.service';
 
 @Component({
   selector: 'app-create',
@@ -8,15 +9,49 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class CreateComponent implements OnInit {
 
-  firstName = new FormControl('', [Validators.required]);
+  teaName = new FormControl('', [Validators.required]);
+  milkChecked = true;
+  waterChecked: boolean;
+  brand: string;
+  cupSize= 0;
+  sugarChecked = 'true';
 
-  constructor() { }
+  constructor(private teaService:TeaService) { 
+
+  }
 
   ngOnInit() {
   }
 
   getErrorMessage() {
-    return this.firstName.hasError('required') ? 'Please enter a tea name' : '';
+    return this.teaName.hasError('required') ? 'Please enter a tea name' : '';
   }
 
+  onSubmitTeaForm() {
+
+    console.log('cicked');
+    const tea = {
+      brand: this.brand,
+      createdBy: "Default",
+      cupSize: this.cupSize,
+      id: "",
+      ingredients: [
+        "lemon"
+      ],
+      milk: this.milkChecked,
+      name: this.teaName.value,
+      sugar: this.sugarChecked === 'true',
+      water: this.waterChecked
+
+    }
+    console.log('after create object ' + JSON.stringify(tea));
+    this.teaService.addTea(tea);
+  }
+
+  get createteaForm() {
+    if (!this.teaName.value || (!this.milkChecked && !this.waterChecked)) {
+      return false;
+    }
+    return true;
+  }
 }

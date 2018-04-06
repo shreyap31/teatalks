@@ -1,16 +1,17 @@
 <div class="row row-no-padding addyoutea-container">
   <div class="col-12 col-no-padding">
     <h2>Make your own tea</h2>
-    <form>
+    <div class="makeyourtea-form" name="makeyourtea">
+       <div class="col-12 col-no-padding">
       <mat-form-field class="demo-full-width">
-        <input matInput placeholder="Enter Tea Name" [formControl]="firstName" required>
-        <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
+        <input matInput placeholder="Enter Tea Name" [formControl]="teaName" required>
+        <mat-error *ngIf="teaName.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
+      </div>
 
       <div class="col-12 col-no-padding">
-        <mat-form-field>
-          <mat-select placeholder="Select Tea Brand" [(value)]="selected">
-            <mat-option>-- Select Any --</mat-option>
+        <mat-form-field class="demo-full-width">
+          <mat-select placeholder="Select Tea Brand" [(ngModel)]="brand">
             <mat-option value="1">lipton</mat-option>
             <mat-option value="2">tata</mat-option>
             <mat-option value="3">society</mat-option>
@@ -21,41 +22,42 @@
 
       <div class="col-12 col-no-padding">
         <p>Do you want milk/water?</p>
-        <mat-checkbox class="milk-water" [checked]="true">milk</mat-checkbox>
-        <mat-checkbox class="milk-water">water</mat-checkbox>
+        <mat-checkbox class="milk-water" [(ngModel)]="milkChecked">milk</mat-checkbox>
+        <mat-checkbox class="milk-water" [(ngModel)]="waterChecked">water</mat-checkbox>
+        <mat-error *ngIf="!milkChecked && !waterChecked">Please select atleast one of options</mat-error>
       </div>
 
       <div class="col-12 col-no-padding">
         <p>Do you want sugar?</p>
-        <mat-radio-group>
-          <mat-radio-button value="1" [checked]="true">Yes</mat-radio-button>
-          <mat-radio-button value="2">No</mat-radio-button>
+        <mat-radio-group [(ngModel)]="sugarChecked">
+          <mat-radio-button value="true" >Yes</mat-radio-button>
+          <mat-radio-button value="false">No</mat-radio-button>
         </mat-radio-group>
       </div>
 
       <div class="col-12 col-no-padding">
         <p>how stressed are you?</p>
-        <mat-radio-group>
-          <mat-radio-button value="1" [checked]="true">small</mat-radio-button>
-          <mat-radio-button value="2">medium</mat-radio-button>
-          <mat-radio-button value="3">large</mat-radio-button>
+        <mat-radio-group [(ngModel)]="cupSize">
+          <mat-radio-button value="0" >small</mat-radio-button>
+          <mat-radio-button value="1">medium</mat-radio-button>
+          <mat-radio-button value="2">large</mat-radio-button>
         </mat-radio-group>
       </div>
 
 
       <div class="col-12 col-no-padding ingredients-container">
         <p>ingredients</p>
-        <mat-checkbox class="ingredients" [checked]="true">ginger</mat-checkbox>
+        <mat-checkbox class="ingredients">ginger</mat-checkbox>
         <mat-checkbox class="ingredients">Lemon</mat-checkbox>
         <mat-checkbox class="ingredients">Tulsi</mat-checkbox>
         <mat-checkbox class="ingredients">Cardamom</mat-checkbox>
       </div>
 
       <div class="col-12 col-no-padding button-container">
-        <button mat-raised-button color="" class="save-btn">Save your tea</button>
+        <button mat-raised-button color="" class="save-btn" [disabled]="!createteaForm" (click)="onSubmitTeaForm()">Save your tea</button>
         <button mat-raised-button color="" class="clear-btn">Clear</button>
       </div>
 
-    </form>
+    </div>
   </div>
 </div>

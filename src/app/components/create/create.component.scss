@@ -1,7 +1,17 @@
+.addyoutea-container {background-color: white;
+    color: #3b160f;
+    opacity: 0.75;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px 0 50px;
+}
+
 .addyoutea-container p{
     font-family: Roboto,"Helvetica Neue",sans-serif;
     font-size: inherit;
-    color: rgba(0,0,0,.54);
+    color: #3b160f;
+    font-weight:bold;
 }
 
 .addyoutea-container .mat-checkbox-label {
@@ -9,12 +19,9 @@
     font-size: inherit;
 }
 
-
-.addyoutea-container .mat-form-field .mat-form-field-wrapper {
-    padding-bottom: 0;
-}
 .button-container {
     margin-top: 20px;
+    text-align: center;
 }
 .save-btn {
            background-color: green;
@@ -24,4 +31,12 @@
 .clear-btn {
     border-radius: 17.5px;
     color:green;
+}
+.makeyourtea-form {
+        width: 80%;
+    margin: 0 10%;
+    text-align:left;
+}
+.demo-full-width {
+    width:100%;
 }
