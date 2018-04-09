@@ -1,10 +1,10 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeaService } from '../../services/tea.service';
 import { Tea } from '../../models/tea';
 import { TeaCupSize } from '../../constants/tea-cup-size';
-import {MatDialog,MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-order',
@@ -31,7 +31,7 @@ export class OrderComponent implements OnInit {
     private teaService: TeaService,
     private router: Router,
     private route: ActivatedRoute,
-    public dialog:MatDialog
+    public dialog: MatDialog
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -40,31 +40,33 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     const teaId = this.route.snapshot.paramMap.get('id');
-    this.teaService.getTea(teaId)
-      .subscribe(tea => {
+    if (teaId) {
+      this.teaService.getTea(teaId)
+        .subscribe(tea => {
 
-        if (tea && tea.name) {
-          this.tea = tea;
+          if (tea && tea.name) {
+            this.tea = tea;
 
-          this.milkChecked = tea.milk;
-          this.waterChecked = tea.water;
-          if (!this.milkChecked && !this.waterChecked) {
-            this.milkChecked = true;
+            this.milkChecked = tea.milk;
+            this.waterChecked = tea.water;
+            if (!this.milkChecked && !this.waterChecked) {
+              this.milkChecked = true;
+            }
+
+            this.sugarChecked = tea.sugar;
+
+            if ([TeaCupSize.SMALL, TeaCupSize.MEDIUM, TeaCupSize.LARGE].includes(tea.cupSize)) {
+              this.cupSize = tea.cupSize;
+            } else {
+              this.cupSize = TeaCupSize.MEDIUM;
+            }
+
+            if (tea.ingredients && tea.ingredients.length) {
+              this.ingredients = tea.ingredients.join(', ');
+            }
           }
-
-          this.sugarChecked = tea.sugar;
-
-          if ([TeaCupSize.SMALL, TeaCupSize.MEDIUM, TeaCupSize.LARGE].includes(tea.cupSize)) {
-            this.cupSize = tea.cupSize;
-          } else {
-            this.cupSize = TeaCupSize.MEDIUM;
-          }
-
-          if (tea.ingredients && tea.ingredients.length) {
-            this.ingredients = tea.ingredients.join(', ');
-          }
-        }
-      });
+        });
+    }
   }
 
   get milkWaterErrorMessage() {
@@ -76,10 +78,10 @@ export class OrderComponent implements OnInit {
     return null;
   }
 
-  openOrderDialog(){
-    let dialogRef = this.dialog.open(OrderDialog,{
+  openOrderDialog() {
+    this.dialog.open(OrderDialogComponent, {
       width: '400px',
-      height:'250px'
+      height: '250px'
     });
   }
 
@@ -90,17 +92,15 @@ export class OrderComponent implements OnInit {
   selector: 'app-order',
   templateUrl: './order-placed.component.html'
 })
-export class OrderDialog{
+export class OrderDialogComponent {
 
-constructor(public dialogRef:MatDialogRef<OrderDialog>,
- @Inject(MAT_DIALOG_DATA) public data: any
+  constructor(public dialogRef: MatDialogRef<OrderDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  
-  iconClick()
-  {
+
+  iconClick() {
     this.dialogRef.close();
-    console.log("clicked");
   }
 
 }

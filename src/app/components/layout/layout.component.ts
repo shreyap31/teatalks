@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { Tea } from '../../models/tea';
 import { TeaService } from '../../services/tea.service';
+import { UserService } from '../../services/user.service';
 import { AppStateService } from '../../services/app.state.service';
 import { SignInComponent } from '../sign-in/sign-in.component';
 
@@ -16,7 +17,8 @@ export class LayoutComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private teaService: TeaService,
-    private appStateService: AppStateService,
+    private userService: UserService,
+    public appStateService: AppStateService,
     private router: Router
   ) {}
 
@@ -35,6 +37,10 @@ export class LayoutComponent implements OnInit {
             this.router.navigateByUrl('/order/' + teaList[0].id);
           }
         });
+  }
+
+  onSignOutClick() {
+    this.userService.logout().subscribe();
   }
 
   get teaList() {
