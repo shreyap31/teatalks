@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeaService } from '../../services/tea.service';
 import { Tea } from '../../models/tea';
 import { TeaCupSize } from '../../constants/tea-cup-size';
+import {MatDialog,MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-order',
@@ -29,7 +30,8 @@ export class OrderComponent implements OnInit {
   constructor(
     private teaService: TeaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog:MatDialog
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -72,6 +74,33 @@ export class OrderComponent implements OnInit {
     }
     this.canPlaceOrder = true;
     return null;
+  }
+
+  openOrderDialog(){
+    let dialogRef = this.dialog.open(OrderDialog,{
+      width: '400px',
+      height:'250px'
+    });
+  }
+
+}
+
+
+@Component({
+  selector: 'app-order',
+  templateUrl: './order-placed.component.html'
+})
+export class OrderDialog{
+
+constructor(public dialogRef:MatDialogRef<OrderDialog>,
+ @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  
+  iconClick()
+  {
+    this.dialogRef.close();
+    console.log("clicked");
   }
 
 }

@@ -40,7 +40,7 @@
       </div>
 
       <div class="col-12 col-no-padding button-container">
-        <button mat-raised-button color="" class="save-btn" [disabled]="!canPlaceOrder">Place order</button>
+        <button mat-raised-button color="" class="save-btn" [disabled]="!canPlaceOrder" (click)="openOrderDialog()">Place order</button>
       </div>
     </div>
   </div>

@@ -12,7 +12,7 @@ import { AppStateService } from './services/app.state.service';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { OrderComponent } from './components/order/order.component';
+import { OrderComponent,OrderDialog } from './components/order/order.component';
 import { CreateComponent } from './components/create/create.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 
@@ -23,7 +23,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     LayoutComponent,
     OrderComponent,
     CreateComponent,
-    SignInComponent
+    SignInComponent,
+    OrderDialog
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  entryComponents: [SignInComponent],
+  entryComponents: [SignInComponent,OrderDialog],
   providers: [
     ApiService,
     TeaService,
