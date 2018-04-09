@@ -52,6 +52,5 @@ export class SignInComponent implements OnInit {
   iconClick()
   {
     this.dialogRef.close();
-    console.log("clicked");
   }
 }
