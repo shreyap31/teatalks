@@ -6,26 +6,39 @@
   margin: 0 auto;
   margin-top: 20px;
   padding: 20px 0 50px;
+
+  mat-checkbox, mat-radio-button {
+    margin-right: 10px;
+  }
 }
+
 .button-container {
   margin-top: 20px;
 }
+
 .save-btn {
   background-color: green;
   color: white;
   border-radius: 17.5px;
 }
+
 .detail-line {
-  margin: 20px 0;
+  padding: 10px 0;
 
   p {
     margin-bottom: 8px;
   }
 }
+
 .tea-brand {
   font-style: italic;
 }
+
 .label {
   font-size: 18px;
   font-weight: bold;
+}
+
+.cup-selection {
+  padding-top: 0;
 }

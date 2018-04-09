@@ -1,11 +1,11 @@
 export class Tea {
   id: string;
   name: string;
-  teaBrand: string;
-  water: string;
-  milk: string;
-  sugar: string;
-  teaCupSize: string;
+  brand: string;
+  water: boolean;
+  milk: boolean;
+  sugar: boolean;
+  cupSize: number;
   ingredients: string[];
   createdBy: string;
 }

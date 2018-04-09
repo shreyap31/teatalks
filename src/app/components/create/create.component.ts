@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { TeaService } from '../../services/tea.service';
+import { TeaBrand } from '../../constants/tea-brand';
+import { TeaCupSize } from '../../constants/tea-cup-size';
+import { TeaIngredient } from '../../constants/tea-ingredient';
 
 @Component({
   selector: 'app-create',
@@ -8,15 +12,68 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class CreateComponent implements OnInit {
 
-  firstName = new FormControl('', [Validators.required]);
+  teaName = new FormControl('', [Validators.required]);
+  milkChecked = true;
+  waterChecked = false;
+  sugarChecked = true;
+  brand: string;
+  cupSize = 2;
+  ingredientOptions;
+  TeaBrand = TeaBrand;
+  TeaCupSize = TeaCupSize;
 
-  constructor() { }
+  constructor(private teaService: TeaService) {
+    this.ingredientOptions = Object.keys(TeaIngredient).reduce((acc, key) => {
+      acc.push({
+        name: TeaIngredient[key],
+        checked: false
+      });
+      return acc;
+    }, []);
+  }
 
   ngOnInit() {
   }
 
-  getErrorMessage() {
-    return this.firstName.hasError('required') ? 'Please enter a tea name' : '';
+  onSubmitTeaForm() {
+    const ingredients = [];
+
+    this.ingredientOptions.forEach(ingredient => {
+      if (ingredient.checked) {
+        ingredients.push(ingredient.name);
+      }
+    });
+
+    const tea = {
+      id: '',
+      name: this.teaName.value,
+      brand: this.brand,
+      milk: this.milkChecked,
+      sugar: this.sugarChecked,
+      water: this.waterChecked,
+      cupSize: this.cupSize,
+      ingredients,
+      createdBy: 'Default'
+    };
+
+    this.teaService.addTea(tea).subscribe();
   }
 
+  get teaNameErrorMessage() {
+    return this.teaName.hasError('required') ? 'please enter a tea name' : null;
+  }
+
+  get milkWaterErrorMessage() {
+    if (!this.milkChecked && !this.waterChecked) {
+      return 'please select at least one option';
+    }
+    return null;
+  }
+
+  get canCreateTea() {
+    if (!this.teaName.value || !this.brand || (!this.milkChecked && !this.waterChecked)) {
+      return false;
+    }
+    return true;
+  }
 }

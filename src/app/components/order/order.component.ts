@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeaService } from '../../services/tea.service';
 import { Tea } from '../../models/tea';
+import { TeaCupSize } from '../../constants/tea-cup-size';
 
 @Component({
   selector: 'app-order',
@@ -18,9 +19,12 @@ export class OrderComponent implements OnInit {
   milkChecked: boolean;
   waterChecked: boolean;
   sugarChecked: boolean;
-  teaCupSize: string;
+  cupSize: number;
   ingredients: string;
   cupSelections = Array(25);
+  cupsCount = 1;
+  canPlaceOrder = true;
+  TeaCupSize = TeaCupSize;
 
   constructor(
     private teaService: TeaService,
@@ -36,26 +40,42 @@ export class OrderComponent implements OnInit {
     const teaId = this.route.snapshot.paramMap.get('id');
     this.teaService.getTea(teaId)
       .subscribe(tea => {
-        this.tea = tea;
 
-        this.milkChecked = tea.milk === 'true';
-        this.waterChecked = tea.water === 'true';
-        if (!this.milkChecked && !this.waterChecked) {
-          this.milkChecked = true;
-        }
+        // TODO START - Remove after api responds with object instead of array
+        tea = tea[0];
+        // TODO END
 
-        this.sugarChecked = tea.sugar === 'false' ? false : true;
+        if (tea) {
+          this.tea = tea;
 
-        if (['small', 'medium', 'large'].includes(tea.teaCupSize)) {
-          this.teaCupSize = tea.teaCupSize;
-        } else {
-          this.teaCupSize = 'medium';
-        }
+          this.milkChecked = tea.milk;
+          this.waterChecked = tea.water;
+          if (!this.milkChecked && !this.waterChecked) {
+            this.milkChecked = true;
+          }
 
-        if (tea.ingredients && tea.ingredients.length) {
-          this.ingredients = tea.ingredients.join(', ');
+          this.sugarChecked = tea.sugar;
+
+          if ([TeaCupSize.SMALL, TeaCupSize.MEDIUM, TeaCupSize.LARGE].includes(tea.cupSize)) {
+            this.cupSize = tea.cupSize;
+          } else {
+            this.cupSize = TeaCupSize.MEDIUM;
+          }
+
+          if (tea.ingredients && tea.ingredients.length) {
+            this.ingredients = tea.ingredients.join(', ');
+          }
         }
       });
+  }
+
+  get milkWaterErrorMessage() {
+    if (!this.milkChecked && !this.waterChecked) {
+      this.canPlaceOrder = false;
+      return 'please select at least one option';
+    }
+    this.canPlaceOrder = true;
+    return null;
   }
 
 }
