@@ -20,7 +20,7 @@ export class LayoutComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(SignInComponent, {
-      width: '370px',
+      width: '600px',
       height: '500px',
     });
   }
