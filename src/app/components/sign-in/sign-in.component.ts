@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormControl, Validators} from '@angular/forms';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,7 +11,7 @@ import {FormControl, Validators} from '@angular/forms';
 export class SignInComponent implements OnInit {
 
   hide=true;
-  email = new FormControl('', [Validators.required]);
+  username = new FormControl('', [Validators.required]);
   fname = new FormControl('', [Validators.required]);
   lname = new FormControl('', [Validators.required]);
   password1 = new FormControl('', [Validators.required]);
@@ -25,9 +26,9 @@ export class SignInComponent implements OnInit {
  
 
   getErrorMessageUsername() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('maxLength') ? 'Not a valid length' :
-		this.email.hasError('pattern') ? 'Only Alphabets allowed' :
+    return this.username.hasError('required') ? 'You must enter a value' :
+        this.username.hasError('maxLength') ? 'Not a valid length' :
+		this.username.hasError('pattern') ? 'Only Alphabets allowed' :
             '';
   }
 

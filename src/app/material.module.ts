@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {
   MatButtonModule,
   MatMenuModule,
@@ -43,6 +44,7 @@ import { AppComponent } from './app.component';
     MatCardModule,
     MatDialogModule,
     MatGridListModule,
+    MatTooltipModule,
     MatTabsModule
   ],
   exports: [
@@ -60,6 +62,7 @@ import { AppComponent } from './app.component';
     MatTabsModule,
     MatDialogModule,
     MatGridListModule,
+    MatTooltipModule,
     MatCardModule
   ],
   providers: [
