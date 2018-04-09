@@ -83,3 +83,18 @@ a {
 .mat-dialog-container {
     padding:0px!important;
 }
+
+.visible-xs{
+    display:none;
+}
+.visible-sm{
+    display:block;
+}
+
+@media only screen and (max-width: 767px) {
+.visible-xs{
+    display:block;
+}
+.visible-sm{
+    display:none;
+}
