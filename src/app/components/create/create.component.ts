@@ -63,7 +63,9 @@ export class CreateComponent implements OnInit {
     };
 
     this.teaService.addTea(tea).subscribe(res => {
+      tea.id = res.id;
       this.appStateService.teaList.push(tea);
+      this.router.navigateByUrl('/order/' + tea.id);
     });
   }
 

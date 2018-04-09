@@ -41,7 +41,7 @@ export class OrderComponent implements OnInit {
     this.teaService.getTea(teaId)
       .subscribe(tea => {
 
-        if (tea) {
+        if (tea && tea.name) {
           this.tea = tea;
 
           this.milkChecked = tea.milk;
