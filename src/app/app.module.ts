@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 
 import { ApiService } from './services/api.service';
 import { TeaService } from './services/tea.service';
+import { AppStateService } from './services/app.state.service';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
@@ -36,7 +37,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
   entryComponents: [SignInComponent],
   providers: [
     ApiService,
-    TeaService
+    TeaService,
+    AppStateService
   ],
   bootstrap: [AppComponent]
 })

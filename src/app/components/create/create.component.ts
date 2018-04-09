@@ -4,6 +4,8 @@ import { TeaService } from '../../services/tea.service';
 import { TeaBrand } from '../../constants/tea-brand';
 import { TeaCupSize } from '../../constants/tea-cup-size';
 import { TeaIngredient } from '../../constants/tea-ingredient';
+import { AppStateService } from '../../services/app.state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -22,7 +24,11 @@ export class CreateComponent implements OnInit {
   TeaBrand = TeaBrand;
   TeaCupSize = TeaCupSize;
 
-  constructor(private teaService: TeaService) {
+  constructor(
+    private teaService: TeaService,
+    private appStateService: AppStateService,
+    private router: Router
+  ) {
     this.ingredientOptions = Object.keys(TeaIngredient).reduce((acc, key) => {
       acc.push({
         name: TeaIngredient[key],
@@ -56,7 +62,9 @@ export class CreateComponent implements OnInit {
       createdBy: 'Default'
     };
 
-    this.teaService.addTea(tea).subscribe();
+    this.teaService.addTea(tea).subscribe(res => {
+      this.appStateService.teaList.push(tea);
+    });
   }
 
   get teaNameErrorMessage() {

@@ -41,10 +41,6 @@ export class OrderComponent implements OnInit {
     this.teaService.getTea(teaId)
       .subscribe(tea => {
 
-        // TODO START - Remove after api responds with object instead of array
-        tea = tea[0];
-        // TODO END
-
         if (tea) {
           this.tea = tea;
 

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { SignInComponent } from '../sign-in/sign-in.component';
-import { TeaService } from '../../services/tea.service';
 import { Tea } from '../../models/tea';
+import { TeaService } from '../../services/tea.service';
+import { AppStateService } from '../../services/app.state.service';
+import { SignInComponent } from '../sign-in/sign-in.component';
 
 @Component({
   selector: 'app-layout',
@@ -11,11 +13,11 @@ import { Tea } from '../../models/tea';
 })
 export class LayoutComponent implements OnInit {
 
-  teaList: Tea[];
-
   constructor(
     public dialog: MatDialog,
-    private teaService: TeaService
+    private teaService: TeaService,
+    private appStateService: AppStateService,
+    private router: Router
   ) {}
 
   openDialog(): void {
@@ -27,7 +29,16 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.teaService.getTeaList()
-        .subscribe(teaList => this.teaList = teaList);
+        .subscribe(teaList => {
+          this.appStateService.teaList = teaList;
+          if (window.location.pathname === '/') {
+            this.router.navigateByUrl('/order/' + teaList[0].id);
+          }
+        });
+  }
+
+  get teaList() {
+    return this.appStateService.teaList;
   }
 
 }

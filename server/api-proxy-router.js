@@ -34,7 +34,7 @@ function apiProxyHandler(req, res) {
 function generateRequestOptions(req) {
   return {
     url: req.path,
-    baseUrl: 'http://10.8.6.204:8080',
+    baseUrl: 'http://10.8.6.132:8080',
     method: req.method,
     qs: req.query,
     body: req.body,
