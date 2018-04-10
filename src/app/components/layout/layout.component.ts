@@ -30,7 +30,8 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.teaService.getTeaList()
+    const userId = this.appStateService.userId || 'Default';
+    this.teaService.getTeaList(userId)
         .subscribe(teaList => {
           this.appStateService.teaList = teaList;
           if (window.location.pathname === '/') {
@@ -40,7 +41,9 @@ export class LayoutComponent implements OnInit {
   }
 
   onSignOutClick() {
-    this.userService.logout().subscribe();
+    this.userService.logout().subscribe(() => {
+      window.location.assign('/');
+    });
   }
 
   get teaList() {

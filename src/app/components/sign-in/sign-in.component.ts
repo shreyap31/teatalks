@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UserService } from '../../services/user.service';
 import { AppStateService } from '../../services/app.state.service';
+import { TeaService } from '../../services/tea.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class SignInComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SignInComponent>,
     private userService: UserService,
+    private teaService: TeaService,
     private appStateService: AppStateService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -36,7 +38,14 @@ export class SignInComponent implements OnInit {
     const password = this.loginPassword.value;
     this.userService.login(userId, password)
       .subscribe(() => {
+        this.teaService.getTeaList(this.appStateService.userId)
+          .subscribe(teaList => {
+            this.appStateService.teaList = teaList;
+          });
         this.iconClick();
+      },
+      err => {
+        // TODO - Show login error message
       });
   }
 
@@ -50,6 +59,9 @@ export class SignInComponent implements OnInit {
     this.userService.signup(user)
       .subscribe(() => {
         this.iconClick();
+      },
+      err => {
+        // TODO - Show signup error message
       });
   }
 

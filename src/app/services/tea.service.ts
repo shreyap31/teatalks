@@ -8,7 +8,7 @@ export class TeaService {
 
   constructor(private apiService: ApiService) { }
 
-  getTeaList(userId = 'Default'): Observable<Tea[]> {
+  getTeaList(userId: string = 'Default'): Observable<Tea[]> {
     return this.apiService.request<Tea[]>(`/teaTalks/getTeaList/${userId}`);
   }
 

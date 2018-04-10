@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TeaService } from '../../services/tea.service';
+import { AppStateService } from '../../services/app.state.service';
 import { Tea } from '../../models/tea';
 import { TeaCupSize } from '../../constants/tea-cup-size';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-order',
@@ -29,6 +30,7 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private teaService: TeaService,
+    private appStateService: AppStateService,
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog
@@ -41,7 +43,8 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     const teaId = this.route.snapshot.paramMap.get('id');
     if (teaId) {
-      this.teaService.getTea(teaId)
+      const userId = this.appStateService.userId || 'Default';
+      this.teaService.getTea(teaId, userId)
         .subscribe(tea => {
 
           if (tea && tea.name) {

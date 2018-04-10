@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { catchError, map, tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class ApiService {
@@ -33,16 +31,6 @@ export class ApiService {
       params,
       body,
       headers
-    })
-    .pipe(
-      catchError(this.handleError<T>(fallbackResponse))
-    );
-  }
-
-  private handleError<T>(result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
+    });
   }
 }

@@ -50,6 +50,8 @@ export class CreateComponent implements OnInit {
       }
     });
 
+    const createdBy = this.appStateService.userId || 'Default';
+
     const tea = {
       id: '',
       name: this.teaName.value,
@@ -59,7 +61,7 @@ export class CreateComponent implements OnInit {
       water: this.waterChecked,
       cupSize: this.cupSize,
       ingredients,
-      createdBy: 'Default'
+      createdBy
     };
 
     this.teaService.addTea(tea).subscribe(res => {

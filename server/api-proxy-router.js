@@ -22,15 +22,21 @@ function signupHandler(req, res) {
       res.status(500).json(responseToClient);
     } else {
       const responseToClient = parseResponseBody(body);
-      req.session.regenerate(function() {
-        res.cookie('TTK_USER', req.body.userId);
-        req.session.user = {
-          userId: req.body.userId,
-          firstName: req.body.firstName,
-          lastName: req.body.lastName
-        };
+      if (response.statusCode === 200) {
+        // signup successful
+        req.session.regenerate(function() {
+          res.cookie('TTK_USER', req.body.userId);
+          req.session.user = {
+            userId: req.body.userId,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName
+          };
+          res.status(response.statusCode).json(responseToClient);
+        });
+      } else {
+        // signup failed
         res.status(response.statusCode).json(responseToClient);
-      });
+      }
     }
   });
 }
@@ -43,15 +49,21 @@ function loginHandler(req, res) {
       res.status(500).json(responseToClient);
     } else {
       const responseToClient = parseResponseBody(body);
-      req.session.regenerate(function() {
-        res.cookie('TTK_USER', responseToClient.userId);
-        req.session.user = {
-          userId: responseToClient.userId,
-          firstName: responseToClient.firstName,
-          lastName: responseToClient.lastName
-        };
+      if (response.statusCode === 200) {
+        // login successful
+        req.session.regenerate(function() {
+          res.cookie('TTK_USER', responseToClient.userId);
+          req.session.user = {
+            userId: responseToClient.userId,
+            firstName: responseToClient.firstName,
+            lastName: responseToClient.lastName
+          };
+          res.status(response.statusCode).json(responseToClient);
+        });
+      } else {
+        // login failed
         res.status(response.statusCode).json(responseToClient);
-      });
+      }
     }
   });
 }
@@ -60,7 +72,7 @@ function logoutHandler(req, res) {
   if (req.session.user) {
     req.session.regenerate(function() {
       res.clearCookie('TTK_USER');
-      res.sendStatus(200);
+      res.status(200).send({ status: 200, message: 'Successfully logged out' });
     });
   }
 }

@@ -21,6 +21,18 @@ app.use(expressSession({
   saveUninitialized: false
 }));
 
+app.all('*', function(req, res, next) {
+  const user = req.session.user;
+  const userCookie = req.cookies['TTK_USER'];
+  if (!user && userCookie) {
+    res.clearCookie('TTK_USER');
+  }
+  if (user && (!userCookie || userCookie === 'undefined' || userCookie === 'null')) {
+    res.cookie('TTK_USER', user.userId);
+  }
+  next();
+});
+
 // For serving static assets (js, css, etc)
 app.use(express.static(buildAbsolutePath));
 
