@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MAT_SNACK_BAR_DATA, MatSnackBar} from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UserService } from '../../services/user.service';
@@ -46,24 +46,31 @@ export class SignInComponent implements OnInit {
       },
       err => {
         // TODO - Show login error message
+        
       });
   }
 
   onSignUpClick() {
+    
     const user = {
       userId: this.username.value,
       password: this.password1.value,
       firstName: this.fname.value,
       lastName: this.lname.value
     };
+    
+    
     this.userService.signup(user)
       .subscribe(() => {
         this.iconClick();
       },
       err => {
         // TODO - Show signup error message
+        
+        
       });
-  }
+ 
+}
 
   getErrorMessageUsername() {
     return this.username.hasError('required') ? 'You must enter a value' :
