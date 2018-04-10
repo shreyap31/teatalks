@@ -13,17 +13,23 @@ export class SuscribeComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SuscribeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
+  suscribed()
+  {
+    alert("You have suscribed successfully!");
+   
+  }
+
   ngOnInit() {
   }
   getErrorMessageUsername() {
     return this.email.hasError('required') ? 'You must enter a value' :
           this.email.hasError('email') ? 'Not a valid email' :
             '';
-           
   }
   closeDialog()
   {
     this.dialogRef.close();
   }
+  
 
 }

@@ -6,6 +6,7 @@ import { TeaService } from '../../services/tea.service';
 import { UserService } from '../../services/user.service';
 import { AppStateService } from '../../services/app.state.service';
 import { SignInComponent } from '../sign-in/sign-in.component';
+import { SuscribeComponent } from '../suscribe/suscribe.component';
 
 @Component({
   selector: 'app-layout',
@@ -26,6 +27,12 @@ export class LayoutComponent implements OnInit {
     this.dialog.open(SignInComponent, {
       width: '600px',
       height: '500px',
+    });
+  }
+  openSuscribe(): void {
+    let dialogRef = this.dialog.open(SuscribeComponent, {
+      width: '370px',
+	  height: '250px',
     });
   }
 
