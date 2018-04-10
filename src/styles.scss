@@ -90,7 +90,16 @@ a {
 .visible-sm{
     display:block;
 }
+.mat-raised-button[disabled][disabled]{
+color:#666;
+}
 
+.login-signup-modal .mat-tab-label {
+    width:50%;
+}
+.mat-icon {
+    margin-right:15px;
+}
 @media only screen and (max-width: 767px) {
 .visible-xs{
     display:block;

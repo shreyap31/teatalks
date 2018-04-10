@@ -39,7 +39,7 @@
                             <span>Choose Your Tea</span>
                           </li>
                           <li *ngFor="let tea of teaList">
-                            <a routerLink="/order/{{tea.id}}">{{ tea.name }}</a>
+                            <a routerLink="/order/{{tea.id}}" >{{ tea.name }}</a>
                           </li>
                         </ul>
                       </div>
@@ -81,12 +81,12 @@
       <nav class="visible-sm">
         <ul>
           <li *ngIf="appStateService.isLoggedIn">
-              <a routerLink="/create">
+              <a routerLink="/create" class="tea-list-link">
                 <img src="../../../assets/add2.ico" class="add-icon">Add new tea
               </a>
           </li>
           <li *ngFor="let tea of teaList">
-            <a routerLink="/order/{{tea.id}}">{{ tea.name }}</a>
+            <a routerLink="/order/{{tea.id}}" class="tea-list-link">{{ tea.name }}</a>
           </li>
         </ul>
       </nav>
@@ -98,6 +98,8 @@
   </div>
 
   <div class="row row-no-padding">
-    <footer style="padding-left:40%">Copyright &copy;<a class="suscribe" (click)="openSuscribe()" style="padding-left:60%">Suscribe Us</a> </footer>
+    <footer>
+      <div>Copyright &copy;</div>
+      <div><a class="suscribe" (click)="openSuscribe()">Subscribe</a></div> </footer>
   </div>
 </div>
