@@ -15,6 +15,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { OrderComponent } from './components/order/order.component';
 import { CreateComponent } from './components/create/create.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SuscribeComponent } from './components/suscribe/suscribe.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     LayoutComponent,
     OrderComponent,
     CreateComponent,
-    SignInComponent
+    SignInComponent,
+    SuscribeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  entryComponents: [SignInComponent],
+  entryComponents: [SignInComponent, SuscribeComponent],
   providers: [
     ApiService,
     TeaService,

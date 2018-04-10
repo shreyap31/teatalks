@@ -1,0 +1,17 @@
+<div style="float:right;"><mat-icon class="close1" (click)="closeDialog()">close</mat-icon></div>
+
+<div class="row" style="clear:both">
+  <div class="col-lg-12" >
+<mat-grid-list cols="1" rowHeight="5:1">
+  <mat-grid-tile>
+      <mat-form-field class="example-full-width" style="width:250px">
+    <input matInput placeholder="Enter email" id="email" [formControl]="email"  required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessageUsername()}}</mat-error>
+  </mat-form-field>
+  </mat-grid-tile>
+  <br>
+  <mat-grid-tile>
+    <button mat-raised-button color="primary" style="color:white;background-color:RGB(44,190,90);width:50%">Subscribe</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  </div>
