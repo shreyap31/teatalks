@@ -11,11 +11,15 @@ export class SuscribeComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
   constructor(public dialogRef: MatDialogRef<SuscribeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,public dialog: MatDialog) { }
 
   suscribed()
   {
-    alert("You have suscribed successfully!");
+    this.dialogRef.close();
+    this.dialog.open(OrderDialogComponentsuscribe, {
+      width: '400px',
+      height: '250px'
+    });
    
   }
 
@@ -31,5 +35,21 @@ export class SuscribeComponent implements OnInit {
     this.dialogRef.close();
   }
   
+
+}
+@Component({
+  selector: 'app-order',
+  templateUrl: './suscribed.component.html'
+})
+export class OrderDialogComponentsuscribe {
+
+  constructor(public dialogRef: MatDialogRef<OrderDialogComponentsuscribe>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+
+  iconClick() {
+    this.dialogRef.close();
+  }
 
 }
