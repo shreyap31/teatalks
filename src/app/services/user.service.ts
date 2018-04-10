@@ -8,12 +8,26 @@ export class UserService {
 
   constructor(private apiService: ApiService) { }
 
-  login(userId = 'Default'): Observable<User> {
-    return this.apiService.request<User>(`/teaTalks/login`);
+  login(userId: string, password: string): Observable<User> {
+    return this.apiService.request<User>('/teaTalks/login', {
+      method: 'POST',
+      body: {
+        userId,
+        password
+      }
+    });
   }
 
-  signup(userId = 'Default'): Observable<User> {
-    return this.apiService.request<User>(`/teaTalks/signup`);
+  signup(user: User): Observable<any> {
+    return this.apiService.request('/teaTalks/signup', {
+      method: 'POST',
+      body: user
+    });
+  }
 
-}
+  logout(): Observable<any> {
+    return this.apiService.request('/teaTalks/logout', {
+      method: 'POST'
+    });
+  }
 }

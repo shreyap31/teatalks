@@ -1,107 +1,113 @@
-
-<div class="row" id="close" style="float:right;"><mat-icon (click)="iconClick()">close</mat-icon></div>
+<div class="login-signup-modal">
+<div class="row" id="close" style="float:right;">
+  <mat-icon (click)="iconClick()">close</mat-icon>
+</div>
 
 <div class="row" style="clear:both">
   <div class="col-lg-12">
-<mat-grid-list cols="1" rowHeight="9:0.8">
-  <mat-grid-tile>
-    <h3> Welcome To TeaTalks</h3>
-  </mat-grid-tile>
+    <mat-grid-list cols="1" rowHeight="9:0.8">
+      <mat-grid-tile>
+        <h3> Welcome To TeaTalks</h3>
+      </mat-grid-tile>
 
-  </mat-grid-list>
+    </mat-grid-list>
   </div>
 </div>
-  <!--Log In-->
+<!--Log In-->
 
-  <div class="row">
-    <div class="col-lg-12">
-  <mat-tab-group>
+<div class="row">
+  <div class="col-lg-12">
+    <mat-tab-group>
       <div class="col-lg-6">
-    <mat-tab label="Sign In">
-    <form class="example-form" id="SignIn">
-    
-    <mat-grid-list cols="1" rowHeight="100px">
-      <br>
-      <br>
-      <br>
-     <mat-grid-tile>
-     <mat-form-field class="example-full-width" style="width:80%">
-  
-      <input matInput placeholder="User Name" maxLength="15">
-    
-    </mat-form-field>
-     </mat-grid-tile>
-     <br>
-   <br>
-     
-     <mat-grid-tile>
-     <mat-form-field class="example-full-width" style="width:80%">
-  
-     
-      <input matInput placeholder="Enter your password" matTooltip="Password must contains one special character" matTooltipPosition="after" maxLength="10" [type]="hide ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    
-    
-    </mat-form-field>
-     </mat-grid-tile>
-     <br>
-   <br>
-     <mat-grid-tile>
-  <button mat-raised-button style="background-color:RGB(44,190,90);color:white;width:250px">Sign In</button>
-  </mat-grid-tile>
-  </mat-grid-list>
-  </form>
-    </mat-tab>
-  </div>
-    
-    <!--Sign up-->
-    <div class="col-lg-6">
-    <mat-tab label="Sign Up" style="width:50%">
-    <form class="example-form" id="SignUp" >
-    
-    <mat-grid-list cols="1" rowHeight="65px">
-      
-     <mat-grid-tile>
-     <mat-form-field class="example-full-width" style="width:80%">
-  
-      <input matInput placeholder="User Name" maxLength="15" id="SignUpName" [formControl]="username"  required>
-    <mat-error *ngIf="username.invalid">{{getErrorMessageUsername()}}</mat-error>
-    </mat-form-field>
-     </mat-grid-tile>
-     <mat-grid-tile>
-     <mat-form-field class="example-full-width" style="width:80%">
-  
-       <input matInput placeholder="Create your password" [formControl]="password1" matTooltip="Password must contains one special character" matTooltipPosition="after" pattern="(?=.*?[#?!@$%^&*-]).{6,10}" [type]="hide ? 'password' : 'text'" required>
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-     
-    <mat-error *ngIf="password1.invalid">{{getErrorMessagePassword()}}</mat-error>
-    <br>
-    </mat-form-field>
-    
-     </mat-grid-tile>
-    
-     
-     <mat-grid-tile>
-     <mat-form-field class="example-full-width" style="width:80%">
-  
-      <input matInput placeholder="First Name" maxLength="25" [formControl]="fname" pattern="[a-zA-Z][a-zA-Z ]+" required>
-    <mat-error *ngIf="fname.invalid">{{getErrorMessageFname()}}</mat-error>
-    </mat-form-field>
-     </mat-grid-tile>
-     <mat-grid-tile>
-     <mat-form-field class="example-full-width" style="width:80%">
-  
-      <input matInput placeholder="Last Name" maxLength="25" [formControl]="lname" pattern="[a-zA-Z][a-zA-Z ]+" required>
-    <mat-error *ngIf="lname.invalid">{{getErrorMessageLname()}}</mat-error>
-    </mat-form-field>
-     </mat-grid-tile>
-     <br>
-     
-    <mat-grid-tile>
-  <button mat-raised-button  style="color:white;background-color:RGB(44,190,90);width:250px">Sign Up</button>
-  </mat-grid-tile>
-  </mat-grid-list>
-  </form>
-    </mat-tab>
+        <mat-tab label="Sign In">
+          <form class="example-form" id="SignIn">
+
+            <mat-grid-list cols="1" rowHeight="100px">
+              <br>
+              <br>
+              <br>
+              <mat-grid-tile>
+                <mat-form-field class="example-full-width" style="width:80%">
+
+                  <input matInput placeholder="User Name" maxLength="15" [formControl]="loginUsername">
+
+                </mat-form-field>
+              </mat-grid-tile>
+              <br>
+              <br>
+
+              <mat-grid-tile>
+                <mat-form-field class="example-full-width" style="width:80%">
+
+
+                  <input matInput placeholder="Enter your password" matTooltip="Password must contains one special character" matTooltipPosition="after"
+                    maxLength="10" [type]="hide ? 'password' : 'text'" [formControl]="loginPassword">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+
+
+                </mat-form-field>
+              </mat-grid-tile>
+              <br>
+              <br>
+              <mat-grid-tile>
+                <button mat-raised-button style="background-color:RGB(44,190,90);color:white;width:250px" (click)="onSignInClick()">Sign In</button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </form>
+        </mat-tab>
+      </div>
+
+      <!--Sign up-->
+      <div class="col-lg-6">
+        <mat-tab label="Sign Up" style="width:50%">
+          <form class="example-form" id="SignUp">
+
+            <mat-grid-list cols="1" rowHeight="65px">
+
+              <mat-grid-tile>
+                <mat-form-field class="example-full-width" style="width:80%">
+
+                  <input matInput placeholder="User Name" maxLength="15" id="SignUpName" [formControl]="username" required>
+                  <mat-error *ngIf="username.invalid">{{getErrorMessageUsername()}}</mat-error>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field class="example-full-width" style="width:80%">
+
+                  <input matInput placeholder="Create your password" [formControl]="password1" matTooltip="Password must contains one special character"
+                    matTooltipPosition="after" pattern="(?=.*?[#?!@$%^&*-]).{6,10}" [type]="hide ? 'password' : 'text'" required>
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+
+                  <mat-error *ngIf="password1.invalid">{{getErrorMessagePassword()}}</mat-error>
+                  <br>
+                </mat-form-field>
+
+              </mat-grid-tile>
+
+
+              <mat-grid-tile>
+                <mat-form-field class="example-full-width" style="width:80%">
+
+                  <input matInput placeholder="First Name" maxLength="25" [formControl]="fname" pattern="[a-zA-Z][a-zA-Z ]+" required>
+                  <mat-error *ngIf="fname.invalid">{{getErrorMessageFname()}}</mat-error>
+                </mat-form-field>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <mat-form-field class="example-full-width" style="width:80%">
+
+                  <input matInput placeholder="Last Name" maxLength="25" [formControl]="lname" pattern="[a-zA-Z][a-zA-Z ]+" required>
+                  <mat-error *ngIf="lname.invalid">{{getErrorMessageLname()}}</mat-error>
+                </mat-form-field>
+              </mat-grid-tile>
+              <br>
+
+              <mat-grid-tile>
+                <button mat-raised-button style="color:white;background-color:RGB(44,190,90);width:250px" (click)="onSignUpClick()">Sign Up</button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </form>
+        </mat-tab>
+      </div>
+    </mat-tab-group>
+
     </div>
-  </mat-tab-group>

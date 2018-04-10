@@ -8,14 +8,17 @@ import { MaterialModule } from './material.module';
 
 import { ApiService } from './services/api.service';
 import { TeaService } from './services/tea.service';
+import { UserService } from './services/user.service';
 import { AppStateService } from './services/app.state.service';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { OrderComponent } from './components/order/order.component';
+import { OrderComponent, OrderDialogComponent } from './components/order/order.component';
 import { CreateComponent } from './components/create/create.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SuscribeComponent } from './components/suscribe/suscribe.component';
+import { AuthGuard } from './auth.guard';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { SuscribeComponent } from './components/suscribe/suscribe.component';
     OrderComponent,
     CreateComponent,
     SignInComponent,
-    SuscribeComponent
+    SuscribeComponent,
+    OrderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,11 +40,14 @@ import { SuscribeComponent } from './components/suscribe/suscribe.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  entryComponents: [SignInComponent, SuscribeComponent],
+  entryComponents: [SignInComponent, SuscribeComponent, OrderDialogComponent],
   providers: [
     ApiService,
     TeaService,
-    AppStateService
+    UserService,
+    AppStateService,
+    CookieService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

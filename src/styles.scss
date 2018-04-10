@@ -58,3 +58,44 @@ a {
 .col-no-padding{
     padding:0;
 }
+
+.modal-header .check-img{
+      width: 50px;
+    height: 50px;
+    margin:0 auto;
+    
+}
+.modal-header {
+    border-bottom:none;
+    background-color: RGB(44,190,90);
+    padding: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.modal-body {
+        margin-top: 20px;
+        font-weight: bold;
+}
+.modal-body p {
+    font-size: 21px;
+}
+.mat-dialog-container {
+    padding:0px!important;
+}
+
+.visible-xs{
+    display:none;
+}
+.visible-sm{
+    display:block;
+}
+
+@media only screen and (max-width: 767px) {
+.visible-xs{
+    display:block;
+}
+.visible-sm{
+    display:none;
+}
+}

@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const clientSessions = require('client-sessions');
 const cookieParser = require('cookie-parser');
 const apiProxyRouter = require('./api-proxy-router');
 
@@ -10,16 +9,16 @@ const app = express();
 
 const buildAbsolutePath = path.resolve(__dirname, '../dist');
 
+const expressSession = require('express-session');
+
 // For populating cookies into req object
 app.use(cookieParser());
 
 // For handling app session
-app.use(clientSessions({
-  cookieName: 'ttk.sid', // sets session cookie name in client browser; keep it vague for security reasons
-  requestKey: 'appSession', // sets the property name in request object for accessing session data
+app.use(expressSession({
   secret: 'pe$dfs^2bhsHyu*93emc@as%989cmGv!#09qsxS%ascklY67',
-  duration: 1800000,
-  activeDuration: 90000
+  resave: false,
+  saveUninitialized: false
 }));
 
 // For serving static assets (js, css, etc)

@@ -6,9 +6,34 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
+router.post('/teaTalks/signup', signupHandler);
+
 router.post('/teaTalks/login', loginHandler);
 
+router.post('/teaTalks/logout', logoutHandler);
+
 router.all('*', apiProxyHandler);
+
+function signupHandler(req, res) {
+  const options = generateRequestOptions(req);
+  request(options, function(error, response, body) {
+    if (error) {
+      const responseToClient = parseResponseBody(error);
+      res.status(500).json(responseToClient);
+    } else {
+      const responseToClient = parseResponseBody(body);
+      req.session.regenerate(function() {
+        res.cookie('TTK_USER', req.body.userId);
+        req.session.user = {
+          userId: req.body.userId,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName
+        };
+        res.status(response.statusCode).json(responseToClient);
+      });
+    }
+  });
+}
 
 function loginHandler(req, res) {
   const options = generateRequestOptions(req);
@@ -18,10 +43,26 @@ function loginHandler(req, res) {
       res.status(500).json(responseToClient);
     } else {
       const responseToClient = parseResponseBody(body);
-      res.cookie('TTK_USER', responseToClient.firstName + ' ' + responseToClient.lastName)
-      res.status(response.statusCode).json(responseToClient);
+      req.session.regenerate(function() {
+        res.cookie('TTK_USER', responseToClient.userId);
+        req.session.user = {
+          userId: responseToClient.userId,
+          firstName: responseToClient.firstName,
+          lastName: responseToClient.lastName
+        };
+        res.status(response.statusCode).json(responseToClient);
+      });
     }
   });
+}
+
+function logoutHandler(req, res) {
+  if (req.session.user) {
+    req.session.regenerate(function() {
+      res.clearCookie('TTK_USER');
+      res.sendStatus(200);
+    });
+  }
 }
 
 function apiProxyHandler(req, res) {
