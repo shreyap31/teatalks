@@ -14,7 +14,7 @@
         <div class="top_right top_right1">
           <ul>
             <li class="desk_sign_up open_login_sign_up_sec mylogin">
-              <div class="visible-sm">
+              <!--<div class="visible-sm">-->
                 <div *ngIf="!appStateService.isLoggedIn; else usercontent" class="text-uppercase login-flex" (click)="openDialog()">
                   <svg style="height: 30px;width: 27px;vertical-align: middle;fill:white">
                     <g viewBox="0 0 20 20">
@@ -26,12 +26,32 @@
                   </svg>
                   <span class="">Login</span>
                 </div>
+                <div class="visible-xs">
+                      <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+                      <label for="openSidebarMenu" class="sidebarIconToggle">
+                        <div class="spinner diagonal part-1"></div>
+                        <div class="spinner horizontal"></div>
+                        <div class="spinner diagonal part-2"></div>
+                      </label>
+                      <div id="sidebarMenu" class="mob-nav">
+                        <ul class="sidebarMenuInner">
+                          <li>
+                            <span>Choose Your Tea</span>
+                          </li>
+                          <li *ngFor="let tea of teaList">
+                            <a routerLink="/order/{{tea.id}}" >{{ tea.name }}</a>
+                          </li>
+                        </ul>
+                      </div>
+                  </div>
                 <ng-template #usercontent>
-                  <div>{{ appStateService.userId }}</div>
-                  <div (click)="onSignOutClick()">Sign out</div>
+                  <div class="welcome-text">Welcome  {{ appStateService.userId }}</div>
+                  <div (click)="onSignOutClick()">
+                    <img src="../../../assets/sign-out.png" class="signout-icon">Sign out
+                  </div>
                 </ng-template>
-              </div>
-              <div class="visible-xs">
+              <!--</div>-->
+              <!--<div class="visible-xs">
                 <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
                 <label for="openSidebarMenu" class="sidebarIconToggle">
                   <div class="spinner diagonal part-1"></div>
@@ -48,7 +68,7 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div>-->
             </li>
           </ul>
         </div>
@@ -61,10 +81,12 @@
       <nav class="visible-sm">
         <ul>
           <li *ngIf="appStateService.isLoggedIn">
-              <a routerLink="/create">+ Add new tea</a>
+              <a routerLink="/create" class="tea-list-link">
+                <img src="../../../assets/add2.ico" class="add-icon">Add new tea
+              </a>
           </li>
           <li *ngFor="let tea of teaList">
-            <a routerLink="/order/{{tea.id}}">{{ tea.name }}</a>
+            <a routerLink="/order/{{tea.id}}" class="tea-list-link">{{ tea.name }}</a>
           </li>
         </ul>
       </nav>
@@ -76,6 +98,8 @@
   </div>
 
   <div class="row row-no-padding">
-    <footer style="padding-left:40%">Copyright &copy;<a class="suscribe" (click)="openSuscribe()" style="padding-left:60%">Suscribe Us</a> </footer>
+    <footer>
+      <div>Copyright &copy;</div>
+      <div><a class="suscribe" (click)="openSuscribe()">Subscribe</a></div> </footer>
   </div>
 </div>
