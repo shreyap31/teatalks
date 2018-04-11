@@ -7,12 +7,13 @@
   <div class="col-lg-12 col-no-padding">
     <mat-grid-list cols="1" rowHeight="9:0.8">
       <mat-grid-tile>
-        <h3> Welcome To TeaTalks</h3>
+        <span class="heading"> Welcome To TeaTalks</span>
       </mat-grid-tile>
 
     </mat-grid-list>
   </div>
 </div>
+<span id="ErrorMessage" style="color:red">{{ErrorMessage}}</span>
 <!--Log In-->
 
 <div class="row row-no-padding">
@@ -37,7 +38,7 @@
                 <mat-form-field class="example-full-width" style="width:80%">
 
 
-                  <input matInput placeholder="Enter your password" matTooltip="Password must contains one special character" matTooltipPosition="after"
+                  <input matInput placeholder="Enter your password"
                     maxLength="10" [type]="hide ? 'password' : 'text'" [formControl]="loginPassword">
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
 
@@ -46,13 +47,13 @@
               </mat-grid-tile>
             
               <mat-grid-tile>
-                <button mat-raised-button style="background-color:RGB(44,190,90);color:white;width:250px" (click)="onSignInClick()">Sign In</button>
+                <button mat-raised-button [disabled]="!canLogIn" class="save-btn" (click)="onSignInClick()">Sign In</button>
               </mat-grid-tile>
             </mat-grid-list>
           </form>
         </mat-tab>
       </div>
-
+      <span id="ErrorMessage1" style="color:red">{{ErrorMessage1}}</span>
       <!--Sign up-->
       <div class="col-lg-6 col-no-padding">
         <mat-tab label="Sign Up" style="width:50%">
@@ -63,7 +64,7 @@
               <mat-grid-tile>
                 <mat-form-field class="example-full-width" style="width:80%">
 
-                  <input matInput placeholder="User Name" maxLength="15" id="SignUpName" [formControl]="username" required>
+                  <input matInput placeholder="User Name" maxLength="15" id="SignUpName" [formControl]="username" pattern="^[a-zA-Z][a-zA-Z0-9.,$;]+$" required>
                   <mat-error *ngIf="username.invalid">{{getErrorMessageUsername()}}</mat-error>
                 </mat-form-field>
               </mat-grid-tile>
@@ -95,10 +96,10 @@
                   <mat-error *ngIf="lname.invalid">{{getErrorMessageLname()}}</mat-error>
                 </mat-form-field>
               </mat-grid-tile>
-             
+            
 
               <mat-grid-tile>
-                <button mat-raised-button style="color:white;background-color:RGB(44,190,90);width:250px" (click)="onSignUpClick()">Sign Up</button>
+                <button mat-raised-button class="save-btn" [disabled]="!canCreateuser"  (click)="onSignUpClick()" >Sign Up</button>
               </mat-grid-tile>
             </mat-grid-list>
           </form>

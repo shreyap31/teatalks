@@ -8,19 +8,36 @@ import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
   styleUrls: ['./suscribe.component.scss']
 })
 export class SuscribeComponent implements OnInit {
-
+  public flag=true;
   email = new FormControl('', [Validators.required, Validators.email]);
   constructor(public dialogRef: MatDialogRef<SuscribeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,public dialog: MatDialog) { }
 
+  get canSuscribe()
+  {
+    if(!this.email.value)
+    {
+      return false;
+    }
+    return true;
+  }
+
   suscribed()
   {
+    if(this.email.invalid)
+    {
+
+    }
+    else
+    {
     this.dialogRef.close();
+    
     this.dialog.open(OrderDialogComponentsuscribe, {
       width: '400px',
       height: '250px'
     });
-   
+    
+  }
   }
 
   ngOnInit() {
@@ -29,6 +46,7 @@ export class SuscribeComponent implements OnInit {
     return this.email.hasError('required') ? 'You must enter a value' :
           this.email.hasError('email') ? 'Not a valid email' :
             '';
+            
   }
   closeDialog()
   {
