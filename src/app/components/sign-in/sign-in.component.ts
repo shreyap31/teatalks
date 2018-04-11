@@ -88,7 +88,6 @@ export class SignInComponent implements OnInit {
   getErrorMessageUsername() {
     return this.username.hasError('required') ? 'You must enter a value' :
       this.username.hasError('maxLength') ? 'Not a valid length' :
-        this.username.hasError('pattern') ? 'Only Alphabets allowed' :
           '';
   }
 
