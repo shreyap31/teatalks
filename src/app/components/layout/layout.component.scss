@@ -312,6 +312,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     height:35px;
     border:0;
     padding-right: 5px;
+        transform: rotate(270deg);
 }
 
 .add-icon{
@@ -334,10 +335,76 @@ color: #bed62f;
 
 @media only screen and (max-width: 767px) {
 .login-flex {
-    margin-left: 10%;
-    padding-right: 15px;
+        width: 50%;
+    margin-left: 0;
+        border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    height: 60px;
+    padding-top: 10px;
+    margin-top:0px;
+    font-size: 13px;
 }
 .sidebarIconToggle{
     margin-right: 10px;
+    right: 0;
+    left:inherit;
+    top:10px;
+}
+
+#website_logo img{
+    width: 50px;
+    height:50px;
+}
+.full_width_div {
+    height:60px;
+}
+.middle_row{
+    margin-top:60px;
+}
+.website_name h1{
+    font-size: 26px;
+    margin-bottom: 0;
+}
+.top_right {
+    line-height: .5;
+    margin-top: -12px;
+}
+.top_right ul {
+    margin:0;
+}
+.header_right {
+    width: 100%!important;
+}
+.mylogin {
+    margin-right: 0;
+    margin-top:0px!important;
+}
+.hamburger-container {
+    width:40%;
+}
+.tea-list-link {
+    margin-top: 10px;
+}
+.add-icon {
+    padding-right: 0px; 
+}
+.tea-list-link p {
+    font-size: 16px;
+   
+    padding-top: 3px;
+}
+#sidebarMenu {
+    margin-top: 61px;
+}
+.welcome-text {
+    margin-top:0;
+}
+.welcome-text-mob {
+    width:100%;
+}
+.mob-signout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 }

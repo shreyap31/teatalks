@@ -15,7 +15,7 @@
           <ul>
             <li class="desk_sign_up open_login_sign_up_sec mylogin">
               <!--<div class="visible-sm">-->
-                <div *ngIf="!appStateService.isLoggedIn; else usercontent" class="text-uppercase login-flex" (click)="openDialog()">
+                <div *ngIf="!appStateService.isLoggedIn; else usercontent" class="login-flex" (click)="openDialog()">
                   <svg style="height: 30px;width: 27px;vertical-align: middle;fill:white">
                     <g viewBox="0 0 20 20">
                       <path class="white" d="M9.92,8.87a4.44,4.44,0,1,1,4.43-4.44A4.44,4.44,0,0,1,9.92,8.87Zm0-7a2.53,2.53,0,1,0,2.53,2.53A2.53,2.53,0,0,0,9.92,1.91Z"
@@ -25,8 +25,30 @@
                     </g>
                   </svg>
                   <span class="">Login</span>
+
                 </div>
-                <div class="visible-xs">
+
+
+                 <div *ngIf="appStateService.isLoggedIn" class="visible-xs ">
+                   <div class="login-flex">
+                <a routerLink="/create" class="tea-list-link">
+                <img src="../../../assets/add2.ico" class="add-icon"><p>tea</p>
+              </a>
+          </div>
+          </div>
+               
+                <ng-template #usercontent>
+                   <div class="visible-sm">
+                  <div class="welcome-text visible-sm">Welcome  {{ appStateService.userId }}</div>
+                  <div (click)="onSignOutClick()" class="visible-sm">
+                    <img src="../../../assets/sign-out.png" class="signout-icon"/>Sign out
+                  </div>
+                   </div>
+                </ng-template>
+
+                
+               
+                <div class="visible-xs hamburger-container">
                       <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
                       <label for="openSidebarMenu" class="sidebarIconToggle">
                         <div class="spinner diagonal part-1"></div>
@@ -35,40 +57,25 @@
                       </label>
                       <div id="sidebarMenu" class="mob-nav">
                         <ul class="sidebarMenuInner">
-                          <li>
-                            <span>Choose Your Tea</span>
-                          </li>
+                          <li *ngIf="appStateService.isLoggedIn">
+                   <div class="visible-xs welcome-text-mob">
+                     <div class="mob-signout">
+                       <div class="welcome-text visible-xs">{{ appStateService.userId }}</div>
+                     <img src="../../../assets/sign-out.png" (click)="onSignOutClick()" class="signout-icon"/>
+                     
+                  </div>
+                  
+                  
+                   </div>
+               </li>
+                      
                           <li *ngFor="let tea of teaList">
                             <a routerLink="/order/{{tea.id}}" >{{ tea.name }}</a>
                           </li>
                         </ul>
                       </div>
                   </div>
-                <ng-template #usercontent>
-                  <div class="welcome-text">Welcome  {{ appStateService.userId }}</div>
-                  <div (click)="onSignOutClick()">
-                    <img src="../../../assets/sign-out.png" class="signout-icon">Sign out
-                  </div>
-                </ng-template>
-              <!--</div>-->
-              <!--<div class="visible-xs">
-                <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-                <label for="openSidebarMenu" class="sidebarIconToggle">
-                  <div class="spinner diagonal part-1"></div>
-                  <div class="spinner horizontal"></div>
-                  <div class="spinner diagonal part-2"></div>
-                </label>
-                <div id="sidebarMenu" class="mob-nav">
-                  <ul class="sidebarMenuInner">
-                    <li>
-                      <span>Choose Your Tea</span>
-                    </li>
-                    <li *ngFor="let tea of teaList">
-                      <a routerLink="/order/{{tea.id}}">{{ tea.name }}</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>-->
+                
             </li>
           </ul>
         </div>
@@ -77,7 +84,7 @@
   </div>
 
   <div class="middle_row row row-no-padding">
-    <div class="col-2 col-no-padding">
+    <div class="col-2 col-no-padding visible-sm">
       <nav class="visible-sm">
         <ul>
           <li *ngIf="appStateService.isLoggedIn">
@@ -92,7 +99,7 @@
       </nav>
     </div>
 
-    <div class="col-9 col-no-padding">
+    <div class="col-lg-9 col-md-9 col-xs-12 col-no-padding">
       <router-outlet></router-outlet>
     </div>
   </div>
