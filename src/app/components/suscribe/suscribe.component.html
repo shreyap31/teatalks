@@ -2,9 +2,9 @@
 
 <div class="row row-no-padding" style="clear:both">
   <div class="col-lg-12 col-no-padding" >
-<mat-grid-list cols="1" rowHeight="5:1">
+<mat-grid-list cols="1" rowHeight="5:1.2">
   <mat-grid-tile>
-      <mat-form-field class="example-full-width" style="width:250px">
+      <mat-form-field class="example-full-width" style="width:80%">
     <input matInput placeholder="Enter email" id="email" [formControl]="email"  required>
     <mat-error *ngIf="email.invalid">{{getErrorMessageUsername()}}</mat-error>
   </mat-form-field>
