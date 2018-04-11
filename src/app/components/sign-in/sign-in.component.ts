@@ -13,7 +13,8 @@ import { TeaService } from '../../services/tea.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-
+  ErrorMessage = "";
+  ErrorMessage1 = "";
   hide = true;
   username = new FormControl('', [Validators.required]);
   fname = new FormControl('', [Validators.required]);
@@ -46,7 +47,13 @@ export class SignInComponent implements OnInit {
       },
       err => {
         // TODO - Show login error message
-        
+        if(err)
+        {
+        this.ErrorMessage="Username or password incorrect";
+        }
+        else{
+          this.ErrorMessage="Something went wrong!";
+        }
       });
   }
 
@@ -66,7 +73,13 @@ export class SignInComponent implements OnInit {
       },
       err => {
         // TODO - Show signup error message
-        
+        if(err)
+        {
+        this.ErrorMessage="User already exist";
+        }
+        else{
+          this.ErrorMessage="Something went wrong!";
+        }
         
       });
  

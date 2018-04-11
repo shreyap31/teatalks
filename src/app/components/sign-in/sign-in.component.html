@@ -13,6 +13,7 @@
     </mat-grid-list>
   </div>
 </div>
+<span id="ErrorMessage" style="color:red">{{ErrorMessage}}</span>
 <!--Log In-->
 
 <div class="row row-no-padding">
@@ -52,7 +53,7 @@
           </form>
         </mat-tab>
       </div>
-
+      <span id="ErrorMessage1" style="color:red">{{ErrorMessage1}}</span>
       <!--Sign up-->
       <div class="col-lg-6 col-no-padding">
         <mat-tab label="Sign Up" style="width:50%">
@@ -95,7 +96,7 @@
                   <mat-error *ngIf="lname.invalid">{{getErrorMessageLname()}}</mat-error>
                 </mat-form-field>
               </mat-grid-tile>
-             
+            
 
               <mat-grid-tile>
                 <button mat-raised-button style="color:white;background-color:RGB(44,190,90);width:250px" (click)="onSignUpClick()" >Sign Up</button>
