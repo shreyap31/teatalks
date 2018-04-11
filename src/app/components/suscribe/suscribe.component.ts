@@ -13,22 +13,23 @@ export class SuscribeComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SuscribeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,public dialog: MatDialog) { }
 
+  get canSuscribe()
+  {
+    if(!this.email.value)
+    {
+      return false;
+    }
+    return true;
+  }
+
   suscribed()
   {
-    if(this.email.invalid)
-    {
-        
-    }
-    else
-    {
     this.dialogRef.close();
     
     this.dialog.open(OrderDialogComponentsuscribe, {
       width: '400px',
       height: '250px'
     });
-    
-  }
   }
 
   ngOnInit() {

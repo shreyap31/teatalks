@@ -34,6 +34,24 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() { }
 
+  get canCreateuser()
+  {
+    if(!this.username.value || !this.password1.value || !this.fname.value ||!this.lname.value)
+    {
+      return false;
+    }
+    return true;
+  }
+  get canLogIn()
+  {
+    if(!this.loginUsername.value || !this.loginPassword.value)
+    {
+      return false;
+    }
+    return true;
+  }
+
+
   onSignInClick() {
     const userId = this.loginUsername.value;
     const password = this.loginPassword.value;
@@ -112,4 +130,6 @@ export class SignInComponent implements OnInit {
   iconClick() {
     this.dialogRef.close();
   }
+
+ 
 }
