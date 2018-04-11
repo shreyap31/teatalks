@@ -55,6 +55,7 @@ export class SignInComponent implements OnInit {
   onSignInClick() {
     const userId = this.loginUsername.value;
     const password = this.loginPassword.value;
+   
     this.userService.login(userId, password)
       .subscribe(() => {
         this.teaService.getTeaList(this.appStateService.userId)
@@ -73,6 +74,7 @@ export class SignInComponent implements OnInit {
           this.ErrorMessage="Something went wrong!";
         }
       });
+    
   }
 
   onSignUpClick() {
@@ -84,7 +86,12 @@ export class SignInComponent implements OnInit {
       lastName: this.lname.value
     };
     
-    
+    if(this.username.invalid || this.password1.invalid || this.fname.invalid || this.lname.invalid)
+    {
+
+    }
+    else
+    {
     this.userService.signup(user)
       .subscribe(() => {
         this.iconClick();
@@ -100,12 +107,14 @@ export class SignInComponent implements OnInit {
         }
         
       });
+    }
  
 }
 
   getErrorMessageUsername() {
     return this.username.hasError('required') ? 'You must enter a value' :
       this.username.hasError('maxLength') ? 'Not a valid length' :
+      this.username.hasError('pattern') ? 'First letter must be character' :
           '';
   }
 

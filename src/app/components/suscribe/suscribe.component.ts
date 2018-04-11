@@ -24,12 +24,20 @@ export class SuscribeComponent implements OnInit {
 
   suscribed()
   {
+    if(this.email.invalid)
+    {
+
+    }
+    else
+    {
     this.dialogRef.close();
     
     this.dialog.open(OrderDialogComponentsuscribe, {
       width: '400px',
       height: '250px'
     });
+    
+  }
   }
 
   ngOnInit() {

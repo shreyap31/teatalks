@@ -64,7 +64,7 @@
               <mat-grid-tile>
                 <mat-form-field class="example-full-width" style="width:80%">
 
-                  <input matInput placeholder="User Name" maxLength="15" id="SignUpName" [formControl]="username" required>
+                  <input matInput placeholder="User Name" maxLength="15" id="SignUpName" [formControl]="username" pattern="^[a-zA-Z][a-zA-Z0-9.,$;]+$" required>
                   <mat-error *ngIf="username.invalid">{{getErrorMessageUsername()}}</mat-error>
                 </mat-form-field>
               </mat-grid-tile>
