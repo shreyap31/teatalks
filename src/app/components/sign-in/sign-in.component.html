@@ -71,7 +71,7 @@
               <mat-grid-tile>
                 <mat-form-field class="example-full-width" style="width:80%">
 
-                  <input matInput placeholder="Create your password" [formControl]="password1" matTooltip="Password must contains one special character"
+                  <input matInput placeholder="Create your password" [formControl]="password1" matTooltip="Password must contains length between 6 to 10 and one special character"
                     matTooltipPosition="after" pattern="(?=.*?[#?!@$%^&*-]).{6,10}" [type]="hide ? 'password' : 'text'" required>
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
 
