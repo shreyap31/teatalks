@@ -32,7 +32,7 @@ export class LayoutComponent implements OnInit {
   openSuscribe(): void {
     let dialogRef = this.dialog.open(SuscribeComponent, {
       width: '370px',
-	  height: '210px',
+	  height: '240px',
     });
   }
 
