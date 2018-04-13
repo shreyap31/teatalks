@@ -25,9 +25,14 @@ app.all('*', function(req, res, next) {
   const user = req.session.user;
   const userCookie = req.cookies['TTK_USER'];
   if (!user && userCookie) {
+    // If there is no session on server, but userId cookie exists
+    // on client side, then remove that cookie
     res.clearCookie('TTK_USER');
   }
-  if (user && (!userCookie || userCookie === 'undefined' || userCookie === 'null')) {
+  if (user && (!userCookie || userCookie !== user.userId)) {
+    // If there is session on server, but userId cookie is not found
+    // on client side or that cookie's userId is not the same as session's userId,
+    // then correct that cookie's value
     res.cookie('TTK_USER', user.userId);
   }
   next();
