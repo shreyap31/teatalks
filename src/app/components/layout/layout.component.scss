@@ -58,6 +58,18 @@ nav ul a {
     text-decoration: none;
 }
 
+nav ul li a {
+    height: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 9%;
+}
+
+nav ul li a:hover{
+    overflow: visible;
+}
+
 
 article {
     margin-left: 170px;
@@ -216,6 +228,7 @@ article {
     display: flex;
     align-items: center;
     padding: 0 10px;
+    padding-left: 10%;
     
 }
 .sidebarMenuInner li span{
@@ -227,7 +240,18 @@ article {
     text-decoration: none;
     font-size: 14px;
     font-family: cursive;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: inherit;
+    padding-top: 9%;
 }
+
+.sidebarMenuInner li a:hover{
+    overflow: visible;
+    color: #bed62f;
+}
+
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
 }
@@ -308,11 +332,11 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 
 .signout-icon{
-    width:37px;
+    width:35px;
     height:35px;
     border:0;
     padding-right: 5px;
-        transform: rotate(270deg);
+    transform: rotate(270deg);
 }
 
 .add-icon{
@@ -326,8 +350,16 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     font-family: cursive;
     font-style: normal;
     word-spacing: 5px;
+    height: 24px;
     line-height: 1.5;
     margin-top: 19px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+
+.welcome-text:hover{
+    overflow: visible;
 }
 .tea-list-link:hover{
 color: #bed62f;
