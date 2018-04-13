@@ -33,6 +33,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "ngx-cookie-service": "^1.0.10",
+    "pre-commit": "^1.2.2",
     "request": "^2.85.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
@@ -58,5 +59,6 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.5.3"
-  }
+  },
+  "pre-commit": "lint"
 }
