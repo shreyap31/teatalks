@@ -70,7 +70,7 @@
                </li>
                       
                           <li *ngFor="let tea of teaList">
-                            <a routerLink="/order/{{tea.id}}" >{{ tea.name }}</a>
+                            <a routerLink="/order/{{tea.id}}" >{{tea.brand}} {{ tea.name }}</a>
                           </li>
                         </ul>
                       </div>
@@ -93,7 +93,7 @@
               </a>
           </li>
           <li *ngFor="let tea of teaList">
-            <a routerLink="/order/{{tea.id}}" class="tea-list-link">{{ tea.name }}</a>
+            <a routerLink="/order/{{tea.id}}" class="tea-list-link">{{tea.brand}} {{ tea.name }}</a>
           </li>
         </ul>
       </nav>

@@ -72,7 +72,8 @@ export class CreateComponent implements OnInit {
   }
 
   get teaNameErrorMessage() {
-    return this.teaName.hasError('required') ? 'please enter a tea name' : null;
+    return this.teaName.hasError('required') ? 'please enter a tea name' :
+    this.teaName.hasError('maxLength') ? 'Not a valid length' : '';
   }
 
   get milkWaterErrorMessage() {

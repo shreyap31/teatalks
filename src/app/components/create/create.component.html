@@ -5,7 +5,7 @@
     <div class="makeyourtea-form">
       <div class="col-12 col-no-padding">
         <mat-form-field class="demo-full-width">
-          <input matInput placeholder="Enter Tea Name" [formControl]="teaName" required>
+          <input matInput placeholder="Enter Tea Name" maxLength="15" [formControl]="teaName" required>
           <mat-error>{{ teaNameErrorMessage }}</mat-error>
         </mat-form-field>
       </div>
