@@ -9,6 +9,23 @@ import { TeaCupSize } from '../../constants/tea-cup-size';
 
 @Component({
   selector: 'app-order',
+  templateUrl: './order-placed.component.html'
+})
+export class OrderDialogComponent {
+
+  constructor(public dialogRef: MatDialogRef<OrderDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+
+  iconClick() {
+    this.dialogRef.close();
+  }
+
+}
+
+@Component({
+  selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
@@ -86,24 +103,6 @@ export class OrderComponent implements OnInit {
       width: '400px',
       height: '250px'
     });
-  }
-
-}
-
-
-@Component({
-  selector: 'app-order',
-  templateUrl: './order-placed.component.html'
-})
-export class OrderDialogComponent {
-
-  constructor(public dialogRef: MatDialogRef<OrderDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
-
-
-  iconClick() {
-    this.dialogRef.close();
   }
 
 }

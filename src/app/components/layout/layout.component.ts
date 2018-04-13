@@ -21,7 +21,7 @@ export class LayoutComponent implements OnInit {
     private userService: UserService,
     public appStateService: AppStateService,
     private router: Router
-  ) {}
+  ) { }
 
   openDialog(): void {
     this.dialog.open(SignInComponent, {
@@ -30,21 +30,21 @@ export class LayoutComponent implements OnInit {
     });
   }
   openSuscribe(): void {
-    let dialogRef = this.dialog.open(SuscribeComponent, {
+    this.dialog.open(SuscribeComponent, {
       width: '370px',
-	  height: '240px',
+      height: '240px',
     });
   }
 
   ngOnInit() {
     const userId = this.appStateService.userId || 'Default';
     this.teaService.getTeaList(userId)
-        .subscribe(teaList => {
-          this.appStateService.teaList = teaList;
-          if (window.location.pathname === '/') {
-            this.router.navigateByUrl('/order/' + teaList[0].id);
-          }
-        });
+      .subscribe(teaList => {
+        this.appStateService.teaList = teaList;
+        if (window.location.pathname === '/') {
+          this.router.navigateByUrl('/order/' + teaList[0].id);
+        }
+      });
   }
 
   onSignOutClick() {

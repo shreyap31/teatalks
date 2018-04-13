@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MAT_SNACK_BAR_DATA, MatSnackBar} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UserService } from '../../services/user.service';
@@ -13,8 +13,8 @@ import { TeaService } from '../../services/tea.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  ErrorMessage = "";
-  ErrorMessage1 = "";
+  ErrorMessage = '';
+  ErrorMessage1 = '';
   hide = true;
   username = new FormControl('', [Validators.required]);
   fname = new FormControl('', [Validators.required]);
@@ -34,18 +34,14 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() { }
 
-  get canCreateuser()
-  {
-    if(!this.username.value || !this.password1.value || !this.fname.value ||!this.lname.value)
-    {
+  get canCreateuser() {
+    if (!this.username.value || !this.password1.value || !this.fname.value || !this.lname.value) {
       return false;
     }
     return true;
   }
-  get canLogIn()
-  {
-    if(!this.loginUsername.value || !this.loginPassword.value)
-    {
+  get canLogIn() {
+    if (!this.loginUsername.value || !this.loginPassword.value) {
       return false;
     }
     return true;
@@ -55,7 +51,7 @@ export class SignInComponent implements OnInit {
   onSignInClick() {
     const userId = this.loginUsername.value;
     const password = this.loginPassword.value;
-   
+
     this.userService.login(userId, password)
       .subscribe(() => {
         this.teaService.getTeaList(this.appStateService.userId)
@@ -64,57 +60,50 @@ export class SignInComponent implements OnInit {
           });
         this.iconClick();
       },
-      err => {
-        // TODO - Show login error message
-        if(err)
-        {
-        this.ErrorMessage="Username or password incorrect";
-        }
-        else{
-          this.ErrorMessage="Something went wrong!";
-        }
-      });
-    
+        err => {
+          // TODO - Show login error message
+          if (err) {
+            this.ErrorMessage = 'Username or password incorrect';
+          } else {
+            this.ErrorMessage = 'Something went wrong!';
+          }
+        });
+
   }
 
   onSignUpClick() {
-    
+
     const user = {
       userId: this.username.value,
       password: this.password1.value,
       firstName: this.fname.value,
       lastName: this.lname.value
     };
-    
-    if(this.username.invalid || this.password1.invalid || this.fname.invalid || this.lname.invalid)
-    {
 
+    if (this.username.invalid || this.password1.invalid || this.fname.invalid || this.lname.invalid) {
+
+    } else {
+      this.userService.signup(user)
+        .subscribe(() => {
+          this.iconClick();
+        },
+          err => {
+            // TODO - Show signup error message
+            if (err) {
+              this.ErrorMessage = 'User already exist';
+            } else {
+              this.ErrorMessage = 'Something went wrong!';
+            }
+
+          });
     }
-    else
-    {
-    this.userService.signup(user)
-      .subscribe(() => {
-        this.iconClick();
-      },
-      err => {
-        // TODO - Show signup error message
-        if(err)
-        {
-        this.ErrorMessage="User already exist";
-        }
-        else{
-          this.ErrorMessage="Something went wrong!";
-        }
-        
-      });
-    }
- 
-}
+
+  }
 
   getErrorMessageUsername() {
     return this.username.hasError('required') ? 'You must enter a value' :
       this.username.hasError('maxLength') ? 'Not a valid length' :
-      this.username.hasError('pattern') ? 'First letter must be character' :
+        this.username.hasError('pattern') ? 'First letter must be character' :
           '';
   }
 
@@ -140,5 +129,5 @@ export class SignInComponent implements OnInit {
     this.dialogRef.close();
   }
 
- 
+
 }

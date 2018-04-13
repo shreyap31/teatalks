@@ -16,7 +16,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { OrderComponent, OrderDialogComponent } from './components/order/order.component';
 import { CreateComponent } from './components/create/create.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SuscribeComponent, OrderDialogComponentsuscribe } from './components/suscribe/suscribe.component';
+import { SuscribeComponent, SubscribeDialogComponent } from './components/suscribe/suscribe.component';
 import { AuthGuard } from './auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -30,7 +30,7 @@ import { CookieService } from 'ngx-cookie-service';
     SignInComponent,
     SuscribeComponent,
     OrderDialogComponent,
-    OrderDialogComponentsuscribe
+    SubscribeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +41,7 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  entryComponents: [SignInComponent, SuscribeComponent, OrderDialogComponent, OrderDialogComponentsuscribe],
+  entryComponents: [SignInComponent, SuscribeComponent, OrderDialogComponent, SubscribeDialogComponent],
   providers: [
     ApiService,
     TeaService,
