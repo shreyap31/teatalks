@@ -12,6 +12,12 @@ router.post('/teaTalks/login', loginHandler);
 
 router.post('/teaTalks/logout', logoutHandler);
 
+router.all([
+  '/teaTalks/addTea',
+  '/teaTalks/getTea/:id/:userId',
+  '/teaTalks/getTeaList/:userId'
+], authHandler, apiProxyHandler);
+
 router.all('*', apiProxyHandler);
 
 function signupHandler(req, res) {
@@ -75,6 +81,15 @@ function logoutHandler(req, res) {
       res.status(200).send({ status: 200, message: 'Successfully logged out' });
     });
   }
+}
+
+function authHandler(req, res, next) {
+  const userCookie = req.cookies['TTK_USER'];
+  const user = req.session.user;
+  if (user && userCookie !== user.userId) {
+    return res.status(401).send({ status: 401, message: 'Unauthorized Request' });
+  }
+  next();
 }
 
 function apiProxyHandler(req, res) {
